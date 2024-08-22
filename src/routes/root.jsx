@@ -14,6 +14,28 @@ export async function action() {
     return redirect(`/contacts/${contact.id}/edit`);
 }
 
+export async function connect() {
+    const handleUserList = async () => {
+        try {
+            const res = await fetch("http://localhost:8080/api/v1/userList");
+        
+            if(res.ok) {
+                const resJson = await res.json();
+                console.log(resJson);
+            } else {
+                console.error(`Error: ${res.status} - ${res.statusText}`);
+            }
+    
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+      };
+
+      await handleUserList()
+}
+
+
+
 export default function Root() {
     const { contacts, q } = useLoaderData();
     const navigation = useNavigate();
@@ -56,6 +78,11 @@ export default function Root() {
                     </Form>
                 </div>
                 <nav>
+                    <ul>
+                        <li>
+                            <button onClick={connect}>Call API</button>
+                        </li>
+                    </ul>
                     {contacts.length ? (
                         <ul>
                         {contacts.map((contact) => (
