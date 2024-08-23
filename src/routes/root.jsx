@@ -1,40 +1,36 @@
 import { useEffect } from "react";
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
+import {  createContact } from "../contacts";
+// import { getContacts, createContact } from "../contacts";
+import {  callAPI } from "../connect/connectAPI";
 
 export async function loader({ request }) {
+// export async function loader() {
+    // 검색어
     const url = new URL(request.url);
     const q = url.searchParams.get("q");
-    const contacts = await getContacts(q);
-    return { contacts };
+    // const contacts = await getContacts(q);
+    // console.log(contacts);
+    // return {contacts};
+
+
+    if(q == null || q == "") {
+        console.log("전체 조회");
+        // Server Connection
+        const rtnData = await callAPI("userList");
+        return { contacts : rtnData };
+    } else {
+        console.log("검색 조회");
+
+        const rtnData = await callAPI("user" + `?name=${q}`);
+        return { contacts : rtnData };
+    }
 }
 
 export async function action() {
     const contact = await createContact();
     return redirect(`/contacts/${contact.id}/edit`);
 }
-
-export async function connect() {
-    const handleUserList = async () => {
-        try {
-            const res = await fetch("http://localhost:8080/api/v1/userList");
-        
-            if(res.ok) {
-                const resJson = await res.json();
-                console.log(resJson);
-            } else {
-                console.error(`Error: ${res.status} - ${res.statusText}`);
-            }
-    
-        } catch (error) {
-            console.error('Fetch error:', error);
-        }
-      };
-
-      await handleUserList()
-}
-
-
 
 export default function Root() {
     const { contacts, q } = useLoaderData();
@@ -78,11 +74,6 @@ export default function Root() {
                     </Form>
                 </div>
                 <nav>
-                    <ul>
-                        <li>
-                            <button onClick={connect}>Call API</button>
-                        </li>
-                    </ul>
                     {contacts.length ? (
                         <ul>
                         {contacts.map((contact) => (
@@ -95,9 +86,9 @@ export default function Root() {
                                             ? "pending" : ""
                                     }
                                 >
-                                    {contact.first || contact.last ? (
+                                    {contact.firstName || contact.lastName ? (
                                     <>
-                                        {contact.first} {contact.last}
+                                        {contact.firstName} {contact.lastName}
                                     </>
                                     ) : (
                                     <i>No Name</i>
