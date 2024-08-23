@@ -2,29 +2,22 @@ import { useEffect } from "react";
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
 import {  createContact } from "../contacts";
 // import { getContacts, createContact } from "../contacts";
-import {  callAPI } from "../connect/connectAPI";
+import { findUserAll, searchUsers } from "../connect/connectAPI";
 
 export async function loader({ request }) {
-// export async function loader() {
-    // 검색어
+    // 검색창
     const url = new URL(request.url);
     const q = url.searchParams.get("q");
     // const contacts = await getContacts(q);
-    // console.log(contacts);
-    // return {contacts};
 
-
-    if(q == null || q == "") {
-        console.log("전체 조회");
-        // Server Connection
-        const rtnData = await callAPI("userList");
+    if(q == {} || q == null || q == "") {
+        const rtnData = await findUserAll();
         return { contacts : rtnData };
     } else {
-        console.log("검색 조회");
-
-        const rtnData = await callAPI("user" + `?name=${q}`);
+        const rtnData = await searchUsers(q);
         return { contacts : rtnData };
     }
+
 }
 
 export async function action() {
@@ -86,9 +79,9 @@ export default function Root() {
                                             ? "pending" : ""
                                     }
                                 >
-                                    {contact.firstName || contact.lastName ? (
+                                    {contact.first || contact.last ? (
                                     <>
-                                        {contact.firstName} {contact.lastName}
+                                        {contact.first} {contact.last}
                                     </>
                                     ) : (
                                     <i>No Name</i>

@@ -1,15 +1,24 @@
 import { Form, useLoaderData, redirect, useNavigate, } from "react-router-dom";
-import { updateContact } from "../contacts";
+// import { updateContact } from "../contacts";
+import { modifyUser } from "../connect/connectAPI";
 
 export async function action({ request, params }) {
-    const formData = await request.formData();
-    // const firstName = formData.get("first");
-    // const lastName = formData.get("last");
+    // const formData = await request.formData();
+    // const first = formData.get("first");
+    // const last = formData.get("last");
     // updates.first;
     // updates.last;
+    // await updateContact(params.contactId, updates);
 
+    // formData 객체를 일반 자바스크립트 객체로 변환
+    const formData = await request.formData();
     const updates = Object.fromEntries(formData);
-    await updateContact(params.contactId, updates);
+
+    // id 추가
+    updates.id = params.contactId;
+
+    // 사용자 정보수정 Server Connect
+    await modifyUser(updates);
     return redirect(`/contacts/${params.contactId}`);
 }
 
