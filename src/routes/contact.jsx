@@ -2,7 +2,7 @@
 import { useLoaderData, Form, useFetcher, } from "react-router-dom";
 // import { getContact, updateContact } from "../contacts";
 // import { updateContact } from "../contacts";
-import { findUserOne, modifyFavorite, modifyUser } from "../connect/connectAPI";
+import { findUserOne, modifyFavorite, modifyUser } from "../connect/connect-api";
 // import { useDebugValue } from "react";
 
 export async function loader({ params }) {

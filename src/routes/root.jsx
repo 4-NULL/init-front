@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
 import {  createContact } from "../contacts";
 // import { getContacts, createContact } from "../contacts";
-import { findUserAll, searchUsers } from "../connect/connectAPI";
+import { findUserAll, searchUsers } from "../connect/connect-api";
 
 export async function loader({ request }) {
     // 검색창

@@ -1,15 +1,12 @@
 export async function callAPI(targetURL="info_list", params) {
     var url = "http://localhost:8080/api/v1/" + targetURL;
 
-    if(params == "" || params == {} || params == "undefined") {
-        delete params();
-    } else {
-        const queryString = new URLSearchParams(params).toString();
-        url = `${url}?${queryString}`;
-        // console.log(url);
-    }
+    const queryString = new URLSearchParams(params).toString();
 
-    // console.log(url);
+    // 검색어가 있을 경우에만 요청 URL에 추가할 수 있도록 변경
+    if(queryString != "") {
+        url = `${url}?${queryString}`;
+    }
 
     try {
         const res = await fetch(url);
@@ -55,7 +52,7 @@ export async function deleteUser(id) {
 
 // 사용자 즐겨찾기 true/false
 export async function modifyFavorite(params) {
-    return await callAPI("modifyFavorite", params);
+    return await callAPI("modify_favorite", params);
 }
 
 // 사용자 검색
