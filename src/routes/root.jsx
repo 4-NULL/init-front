@@ -3,6 +3,7 @@ import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit,
 import {  createContact } from "../contacts";
 // import { getContacts, createContact } from "../contacts";
 import { findUserAll, searchUsers } from "../connect/connect-api";
+import { isEmpty } from "../common/utils";
 
 export async function loader({ request }) {
     // 검색창
@@ -10,14 +11,8 @@ export async function loader({ request }) {
     const q = url.searchParams.get("q");
     // const contacts = await getContacts(q);
 
-    if(q == {} || q == null || q == "") {
-        const rtnData = await findUserAll();
-        return { contacts : rtnData };
-    } else {
-        const rtnData = await searchUsers(q);
-        return { contacts : rtnData };
-    }
-
+    const rtnData = isEmpty(q) ? await findUserAll() : await searchUsers({"name" : q});
+    return { contacts : rtnData};
 }
 
 export async function action() {

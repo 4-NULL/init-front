@@ -12,7 +12,12 @@ export async function callAPI(targetURL="info_list", params) {
         const res = await fetch(url);
 
         if(res.ok) {
-            return await res.json();
+            // 응답 데이터가 있는 경우에만 JSON으로 파싱
+            if(res.headers.get('content-type')?.includes('application/json')) {
+                return await res.json();
+            } else {
+                return [];
+            }
         } else {
             console.log(`Error: ${res.status} - ${res.statusText}`);
             return [];
@@ -24,11 +29,7 @@ export async function callAPI(targetURL="info_list", params) {
 }
 
 // 단건 사용자 조회
-export async function findUserOne(id) {
-    // console.log(id);
-    const params = {
-        'id' : id
-    };
+export async function findUserOne(params) {
     return await callAPI("info_one", params);
 }
 
@@ -43,10 +44,7 @@ export async function modifyUser(params) {
 }
 
 // 사용자 정보 삭제
-export async function deleteUser(id) {
-    const params = {
-        'id' : id
-    };
+export async function deleteUser(params) {
     return await callAPI("delete", params);
 }
 
@@ -56,10 +54,7 @@ export async function modifyFavorite(params) {
 }
 
 // 사용자 검색
-export async function searchUsers(name) {
-    const params = {
-        "name": name
-    };
+export async function searchUsers(params) {
     return await callAPI("search", params);
 }
 

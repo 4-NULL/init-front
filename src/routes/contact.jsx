@@ -6,7 +6,7 @@ import { findUserOne, modifyFavorite, modifyUser } from "../connect/connect-api"
 // import { useDebugValue } from "react";
 
 export async function loader({ params }) {
-   const contact = await findUserOne(params.contactId);
+   const contact = await findUserOne({"id" : params.contactId});
 
     return {"contact" : contact};
 }
