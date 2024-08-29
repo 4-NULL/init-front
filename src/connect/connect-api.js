@@ -1,10 +1,12 @@
+import { isEmpty } from "../common/utils";
+
 export async function callAPI(targetURL="info_list", params) {
     var url = "http://localhost:8080/api/v1/" + targetURL;
 
     const queryString = new URLSearchParams(params).toString();
 
     // 검색어가 있을 경우에만 요청 URL에 추가할 수 있도록 변경
-    if(queryString != "") {
+    if(!isEmpty(queryString)) {
         url = `${url}?${queryString}`;
     }
 
@@ -30,12 +32,12 @@ export async function callAPI(targetURL="info_list", params) {
 
 // 단건 사용자 조회
 export async function findUserOne(params) {
-    return await callAPI("info_one", params);
+    return await callAPI("info-one", params);
 }
 
 // 다건 사용자 조회
 export async function findUserAll() {
-    return await callAPI("info_list");
+    return await callAPI("info-list");
 }
 
 // 사용자 정보 등록/수정
@@ -50,7 +52,7 @@ export async function deleteUser(params) {
 
 // 사용자 즐겨찾기 true/false
 export async function modifyFavorite(params) {
-    return await callAPI("modify_favorite", params);
+    return await callAPI("modify-favorite", params);
 }
 
 // 사용자 검색
