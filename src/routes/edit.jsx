@@ -1,15 +1,7 @@
 import { Form, useLoaderData, redirect, useNavigate, } from "react-router-dom";
-// import { updateContact } from "../contacts";
 import { modifyUser } from "../connect/connect-api";
 
 export async function action({ request, params }) {
-    // const formData = await request.formData();
-    // const first = formData.get("first");
-    // const last = formData.get("last");
-    // updates.first;
-    // updates.last;
-    // await updateContact(params.contactId, updates);
-
     // formData 객체를 일반 자바스크립트 객체로 변환
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
