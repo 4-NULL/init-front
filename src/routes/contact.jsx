@@ -1,9 +1,37 @@
-import { Form, useLoaderData } from 'react-router-dom';
-import { getContact } from '../contacts';
+/* eslint-disable react/prop-types */
+import { useLoaderData, Form, useFetcher } from 'react-router-dom';
+// import { getContact, updateContact } from "../contacts";
+// import { updateContact } from "../contacts";
+import {
+  findUserOne,
+  modifyFavorite,
+  modifyUser,
+} from '../connect/connect-api';
+// import { useDebugValue } from "react";
 
 export async function loader({ params }) {
-  const contact = await getContact(params.contactId);
-  return { contact };
+  const contact = await findUserOne({ id: params.contactId });
+
+  return { contact: contact };
+}
+
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData);
+
+  // id 추가
+  updates.id = params.contactId;
+
+  if (updates.favorite) {
+    return await modifyFavorite(updates);
+  } else {
+    return await modifyUser(updates);
+  }
+  // 사용자 정보수정 Server Connect
+
+  // return updateContact(params.contactId, {
+  //     favorite: formData.get("favorite") === "true",
+  // });
 }
 
 export default function Contact() {
@@ -65,9 +93,13 @@ export default function Contact() {
 }
 
 function Favorite({ contact }) {
-  const favorite = contact.favorite;
+  const fetcher = useFetcher();
+  const favorite = fetcher.formData
+    ? fetcher.formData.get('favorite') === 'true'
+    : contact.favorite;
+
   return (
-    <Form method='post'>
+    <fetcher.Form method='post'>
       <button
         name='favorite'
         value={favorite ? 'false' : 'true'}
@@ -75,6 +107,6 @@ function Favorite({ contact }) {
       >
         {favorite ? '★' : '☆'}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
