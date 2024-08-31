@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
 import {  createContact } from "../contacts";
 // import { getContacts, createContact } from "../contacts";
@@ -30,8 +30,10 @@ export default function Root() {
         new URLSearchParams(navigation.location.search).has("q");
 
     useEffect(() => {
-        document.getElementById("q").value = q;
-    }, [q]);
+        if (searchInputRef.current) {
+            searchInputRef.current.value = q;
+        }
+    }, [q]);  
 
     return (
         <>
