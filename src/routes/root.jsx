@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
 import {  createContact } from "../contacts";
 import { findUserAll, searchUsers } from "../connect/connect-api";
@@ -22,6 +22,7 @@ export default function Root() {
     const { contacts, q } = useLoaderData();
     const navigation = useNavigate();
     const submit = useSubmit();
+    const searchInputRef = useRef(null);
 
     const searching =
         navigation.location &&
@@ -30,6 +31,7 @@ export default function Root() {
     useEffect(() => {
         document.getElementById("q").value = q || "";
     }, [q]);
+      
 
     return (
         <>

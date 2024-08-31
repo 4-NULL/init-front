@@ -7,12 +7,12 @@ export async function action({ request, params }) {
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
 
-    // id 추가
-    updates.id = params.contactId;
+  // id 추가
+  updates.id = params.contactId;
 
-    // 사용자 정보수정 Server Connect
-    await modifyUser(updates);
-    return redirect(`/contacts/${params.contactId}`);
+  // 사용자 정보수정 Server Connect
+  await modifyUser(updates);
+  return redirect(`/contacts/${params.contactId}`);
 }
 
 export default function EditContact() {
@@ -47,9 +47,9 @@ export default function EditContact() {
         }));
     };
 
-    return (
-    <Form method="post" id="contact-form">
-        <p>
+  return (
+    <Form method='post' id='contact-form'>
+      <p>
         <span>Name</span>
         <input
             placeholder="First"
@@ -69,8 +69,8 @@ export default function EditContact() {
             value={formValues.last}
             onChange={handleChange}
         />
-        </p>
-        <label>
+      </p>
+      <label>
         <span>Twitter</span>
         <input
             type="text"
@@ -80,8 +80,8 @@ export default function EditContact() {
             value={formValues.twitter}
             onChange={handleChange}
         />
-        </label>
-        <label>
+      </label>
+      <label>
         <span>Avatar URL</span>
         <input
             placeholder="https://example.com/avatar.jpg"
@@ -92,8 +92,8 @@ export default function EditContact() {
             value={formValues.avatar}
             onChange={handleChange}
         />
-        </label>
-        <label>
+      </label>
+      <label>
         <span>Notes</span>
         <textarea
             name="notes"
@@ -106,14 +106,14 @@ export default function EditContact() {
         <p>
         <button type="submit">Save</button>
         <button
-            type="button"
-            onClick={() => {
-                navigate(-1);
-            }}
+          type='button'
+          onClick={() => {
+            navigate(-1);
+          }}
         >
-            Cancel
+          Cancel
         </button>
-        </p>
+      </p>
     </Form>
-    );
+  );
 }
