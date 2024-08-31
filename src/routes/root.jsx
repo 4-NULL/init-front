@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
 import {  createContact } from "../contacts";
-// import { getContacts, createContact } from "../contacts";
 import { findUserAll, searchUsers } from "../connect/connect-api";
 import { isEmpty } from "../common/utils";
 
@@ -9,7 +8,6 @@ export async function loader({ request }) {
     // 검색창
     const url = new URL(request.url);
     const q = url.searchParams.get("q");
-    // const contacts = await getContacts(q);
 
     const rtnData = isEmpty(q) ? await findUserAll() : await searchUsers({"name" : q});
     return { contacts : rtnData};
@@ -31,9 +29,7 @@ export default function Root() {
         new URLSearchParams(navigation.location.search).has("q");
 
     useEffect(() => {
-        if (searchInputRef.current) {
-            searchInputRef.current.value = q;
-        }
+        document.getElementById("q").value = q || "";
     }, [q]);
       
 
