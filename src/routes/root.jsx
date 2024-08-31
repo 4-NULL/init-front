@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   Outlet,
   NavLink,
@@ -40,7 +40,9 @@ export default function Root() {
     new URLSearchParams(navigation.location.search).has('q');
 
   useEffect(() => {
-    document.getElementById('q').value = q;
+    if (inputRef.current) {
+      inputRef.current.value = q || ''; // 검색어가 null일 경우 빈 문자열로 설정
+    }
   }, [q]);
 
   return (
