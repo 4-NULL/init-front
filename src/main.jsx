@@ -8,8 +8,8 @@ import Root, {
   loader as rootLoader,
   action as rootAction,
 } from './routes/root';
-import CurriculumList from './init/curriculum/curriculum-list';
-import ErrorPage from './error-page';
+import CurriculumList from './init/curriculum/CurriculumList';
+import ErrorPage from './ErrorPage';
 import Contact, {
   loader as contactLoader,
   action as contactAction,
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
     //     errorElement: <div>Oops! There was an error.</div>,
     //   },
     // ],
-    path: '/',
+    path: '/curriculum',
     element: <CurriculumList />,
     errorElement: <ErrorPage />,
     children: [
