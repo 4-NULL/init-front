@@ -1,16 +1,16 @@
 // server.js
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import { join, resolve } from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 빌드된 정적 파일을 제공
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(join("./", 'dist')));
 
 // 모든 경로를 index.html로 리다이렉트 (SPA 설정)
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  res.sendFile(resolve("./", 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
