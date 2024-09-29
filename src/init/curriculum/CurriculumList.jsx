@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 훅 추가
-
-// 더미 데이터
-const dummyCurriculumList = [
+// CurriculumList.jsx
+export const DUMMY_CURRICULUM_LIST = [
   {
     seq: 1,
     title: 'React 커리큘럼',
@@ -20,33 +17,8 @@ const dummyCurriculumList = [
   },
 ];
 
-const CurriculumList = () => {
-  const [curriculumList, setCurriculumList] = useState([]);
-  const navigate = useNavigate(); // useNavigate 훅 사용
-
-  useEffect(() => {
-    // 더미 데이터 사용
-    setCurriculumList(dummyCurriculumList);
-  }, []);
-
-  // 클릭 시 해당 커리큘럼으로 이동하는 함수
-  const handleClick = (seq) => {
-    navigate(`/curriculum/${seq}`); // 페이지 이동
-  };
-
-  return (
-    <div>
-      <h1>커리큘럼 리스트</h1>
-      <ul>
-        {curriculumList.map(({ seq, title, description }) => (
-          <li key={seq} style={{ marginBottom: '20px' }} onClick={() => handleClick(seq)}>
-            <h2>{title}</h2>
-            <p>{description}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+export function CurriculumList() {
+  return DUMMY_CURRICULUM_LIST;
+}
 
 export default CurriculumList;
