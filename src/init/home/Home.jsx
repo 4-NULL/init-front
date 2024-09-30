@@ -12,8 +12,8 @@ function Home() {
     navigate('/login'); // 로그인 페이지로 이동
   };
 
-  const handleSignUpClick = () => {
-    navigate('/signup'); // 회원가입 페이지로 이동
+  const handleJoinClick = () => {
+    navigate('/join'); // 회원가입 페이지로 이동
   };
 
   return (
@@ -21,14 +21,18 @@ function Home() {
       <h1>init HomePage</h1>
       <p>"We are a service 4 Null!"</p>
 
-      <button onClick={goToCurriculumDetail}>
-        커리큘럼 상세 보기
+      <button onClick={goToCurriculumDetail}>커리큘럼 상세 보기</button>
+      <button
+        onClick={handleLoginClick}
+        style={{ margin: '10px', padding: '10px 20px' }}
+      >
+        로그인
       </button>
-      <button onClick={handleLoginClick} style={{ margin: '10px', padding: '10px 20px' }}>
-                로그인
-      </button>
-      <button onClick={handleSignUpClick} style={{ margin: '10px', padding: '10px 20px' }}>
-                회원가입
+      <button
+        onClick={handleJoinClick}
+        style={{ margin: '10px', padding: '10px 20px' }}
+      >
+        회원가입
       </button>
     </div>
   );

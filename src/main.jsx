@@ -9,12 +9,12 @@ import ErrorPage from './ErrorPage';
 import LessonListView from './init/lesson/LessonListView';
 import LessonDetailView from './init/lesson/LessonDetailView';
 import Login from './init/login/Login';
-import Signup from './init/signup/Signup';
+import Join from './init/join/Join';
 import Layout from './init/layout/Layout';
 
 const router = createBrowserRouter([
   {
-    path: '/', 
+    path: '/',
     element: <Layout />, // Layout을 최상위로 설정
     errorElement: <ErrorPage />,
     children: [
@@ -39,8 +39,8 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/signup',
-        element: <Signup />,
+        path: '/join',
+        element: <Join />,
       },
     ],
   },
