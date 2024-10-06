@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getCurriculumList } from '../../connect/curriculum-api'; // API 호출 함수 import
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getCurriculumList } from '../connect/curriculum-api'; // API 호출 함수 import
 
 // 개별 커리큘럼 항목을 표시하는 컴포넌트
 const CurrItem = ({ item }) => {
     const { seq, title, description } = item; // 커리큘럼의 seq, title, description을 구조 분해 할당
+
+    const navigate = useNavigate()
 
     return (
         <div
@@ -17,7 +20,9 @@ const CurrItem = ({ item }) => {
                 cursor: 'pointer',
             }}
             // 커리큘럼 상세 페이지로 이동하는 함수 추가 (선택사항)
-            onClick={() => console.log(`Navigating to curriculum ${seq}`)}
+            onClick={() => {
+                navigate(`/curriculum/${seq}`)
+            }}
         >
             <h2>{title}</h2>
             <p>{description}</p>

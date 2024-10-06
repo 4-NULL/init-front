@@ -6,7 +6,7 @@ const baseURL = process.env.NODE_ENV === 'production'
     : 'http://localhost:8080/api/v1';
 
 export async function callAPI(targetURL, params) {
-    var url = `${baseURL}${targetURL}`; // 환경에 따른 URL 사용
+    var url = `${baseURL}/curriculum${targetURL}`; // 환경에 따른 URL 사용
 
     const queryString = new URLSearchParams(params).toString();
 
