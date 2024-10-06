@@ -1,9 +1,9 @@
 import { isEmpty } from "../common/utils";
 
-// 환경에 따른 API 기본 URL 설정
-const baseURL = process.env.NODE_ENV === 'production'
-    ? 'https://your-production-url.com/api/v1'
-    : 'http://localhost:8080/api/v1';
+// Vite에서 환경 변수 사용
+const baseURL = `${import.meta.env.VITE_API_URL}/curriculum` || 'http://localhost:8080/api/v1/curriculum';
+
+console.log(baseURL);
 
 export async function callAPI(targetURL, params) {
     var url = `${baseURL}${targetURL}`; // 환경에 따른 URL 사용
@@ -15,6 +15,7 @@ export async function callAPI(targetURL, params) {
     }
 
     try {
+        console.log("url : "+url);
         const res = await fetch(url);
 
         if (res.ok) {
@@ -41,7 +42,7 @@ export async function getCurriculumList(keyword = '') {
     return await callAPI("", params); // ""는 기본 경로로 전체 커리큘럼 조회
 }
 
-export async function getCurriculum(currSeq) {
-    const params = { seq: currSeq }; // 여기에서 keyword 대신 currSeq로 수정
-    return await callAPI("/" + currSeq, params); // ""는 기본 경로로 전체 커리큘럼 조회
-}
+// export async function getCurriculum(currSeq) {
+//     const params = { seq: currSeq }; // 여기에서 keyword 대신 currSeq로 수정
+//     return await callAPI("/" + currSeq, params); // ""는 기본 경로로 전체 커리큘럼 조회
+// }
