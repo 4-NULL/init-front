@@ -6,7 +6,7 @@ const baseURL = `${import.meta.env.VITE_API_URL}/curriculum` || 'http://localhos
 console.log(baseURL);
 
 export async function callAPI(targetURL, params) {
-    var url = `${baseURL}/curriculum${targetURL}`; // 환경에 따른 URL 사용
+    var url = `${baseURL}${targetURL}`; // 환경에 따른 URL 사용
 
     const queryString = new URLSearchParams(params).toString();
 
