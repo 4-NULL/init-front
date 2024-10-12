@@ -1,4 +1,4 @@
-import { isEmpty } from "../common/utils";
+import { isEmpty } from "../shared/utils/utils";
 
 // 환경에 따른 API 기본 URL 설정
 const baseURL = process.env.NODE_ENV === 'production'

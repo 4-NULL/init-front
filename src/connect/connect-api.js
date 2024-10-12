@@ -1,4 +1,4 @@
-import { isEmpty } from "../common/utils";
+import { isEmpty } from "../shared/utils/utils";
 
 export async function callAPI(targetURL="info_list", params) {
     var url = "http://localhost:8080/api/v1/" + targetURL;

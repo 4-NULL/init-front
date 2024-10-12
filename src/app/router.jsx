@@ -1,9 +1,12 @@
 // 튜토리얼: https://reactrouter.com/en/main/start/tutorial
 import { createBrowserRouter } from 'react-router-dom';
-import ErrorPage from '../ErrorPage';
-import Layout from '../init/layout/Layout';
-import CurriculumDetail from '../pages/CurriculumDetail';
+import CurriculumDetailPage from '../pages/CurriculumDetailPage';
+import CurriculumListPage from '../pages/CurriculumListPage';
+import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
+import LessonDetailPage from '../pages/LessonDetailPage';
+import LoginPage from '../pages/LoginPage';
+import Layout from '../shared/ui/Layout';
 
 const router = createBrowserRouter([
   {
@@ -16,10 +19,21 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: '/curriculum',
+        element: <CurriculumListPage />
+      },
+      {
         path: '/curriculum/:seq',
-        element: <CurriculumDetail />
-      }
-
+        element: <CurriculumDetailPage />
+      },
+      {
+        path: '/lesson/:seq',
+        element: <LessonDetailPage />
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
     ],
   },
 ]);

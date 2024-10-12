@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigate, useSubmit, } from "react-router-dom";
-import {  createContact } from "../contacts";
+import { Form, NavLink, Outlet, redirect, useLoaderData, useNavigate, useSubmit, } from "react-router-dom";
 import { findUserAll, searchUsers } from "../connect/connect-api";
-import { isEmpty } from "../common/utils";
+import { createContact } from "../contacts";
+import { isEmpty } from "../shared/utils/utils";
 
 export async function loader({ request }) {
     // 검색창
