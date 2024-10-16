@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function JoinPage() {
+export function JoinPage() {
     return (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
             <h1>회원가입</h1>

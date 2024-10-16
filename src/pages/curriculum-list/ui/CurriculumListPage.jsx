@@ -1,12 +1,9 @@
+import { CurriculumList } from '@widgets/curriculum';
 import React from 'react';
-import CurriculumList from '../widgets/CurriculumList';
-export default function CurriculumListPage() {
-
+export function CurriculumListPage() {
     return (
         <div>
-
             <CurriculumList />
         </div>
     )
-
 }

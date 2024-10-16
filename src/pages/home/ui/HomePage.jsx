@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function HomePage() {
+export function HomePage() {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
   // 버튼 클릭 시 커리큘럼 상세 페이지로 이동
@@ -39,4 +39,3 @@ function HomePage() {
   );
 }
 
-export default HomePage;

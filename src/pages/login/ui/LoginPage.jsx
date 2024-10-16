@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = () => {
+export const LoginPage = () => {
     return (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
             <h1>로그인</h1>
@@ -23,4 +23,3 @@ const Login = () => {
     );
 };
 
-export default Login;

@@ -37,7 +37,7 @@ const DUMMY_LESSON_LIST = [
     
 ];
 
-export default function LessonDetailPage () {
+export function LessonDetailPage () {
     const {seq} = useParams()
     const [lesson, setLesson] = useState({})
     // const lesson = DUMMY_LESSON_LIST.filter(item => item.seq == seq);

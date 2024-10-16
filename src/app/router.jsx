@@ -1,12 +1,13 @@
-// 튜토리얼: https://reactrouter.com/en/main/start/tutorial
 import { createBrowserRouter } from 'react-router-dom';
-import CurriculumDetailPage from '../pages/CurriculumDetailPage';
-import CurriculumListPage from '../pages/CurriculumListPage';
-import ErrorPage from '../pages/ErrorPage';
-import HomePage from '../pages/HomePage';
-import LessonDetailPage from '../pages/LessonDetailPage';
-import LoginPage from '../pages/LoginPage';
-import Layout from '../shared/ui/Layout';
+
+import { CurriculumDetailPage } from '@pages/curriculum-detail';
+import { CurriculumListPage } from '@pages/curriculum-list';
+import { ErrorPage } from '@pages/error';
+import { HomePage } from '@pages/home';
+import { JoinPage } from '@pages/join';
+import { LessonDetailPage } from '@pages/lesson-detail';
+import { LoginPage } from '@pages/login';
+import Layout from '@shared/ui/Layout';
 
 const router = createBrowserRouter([
   {
@@ -19,8 +20,18 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: '/login',
+        element: <LoginPage />
+      },
+      {
+        path: '/join',
+        element: <JoinPage />
+      },
+      {
         path: '/curriculum',
-        element: <CurriculumListPage />
+        element: <CurriculumListPage />,
+        children: [
+        ]
       },
       {
         path: '/curriculum/:seq',
@@ -29,13 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/lesson/:seq',
         element: <LessonDetailPage />
-      },
-      {
-        path: '/login',
-        element: <LoginPage />
-      },
+      }
     ],
   },
+  
 ]);
 
 export default router;
