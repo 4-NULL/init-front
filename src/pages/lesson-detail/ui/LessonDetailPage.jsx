@@ -1,40 +1,40 @@
 import { useLoaderData } from "react-router-dom";
 
-const DUMMY_LESSON_LIST = [
+// const DUMMY_LESSON_LIST = [
     
-    {
-        seq: 1,
-        title: "React 커리큘럼 기본편",
-        content: "이 레슨에서는 React의 기본 개념을 배웁니다."
-    }, 
-    {
-        seq: 2,
-        title: "React 커리큘럼 심화편",
-        content: "이 레슨에서는 React의 심화 내용을 다룹니다."
-    },
+//     {
+//         seq: 1,
+//         title: "React 커리큘럼 기본편",
+//         content: "이 레슨에서는 React의 기본 개념을 배웁니다."
+//     }, 
+//     {
+//         seq: 2,
+//         title: "React 커리큘럼 심화편",
+//         content: "이 레슨에서는 React의 심화 내용을 다룹니다."
+//     },
 
-    {
-        seq: 3,
-        title: "JavaScript 커리큘럼 기본편",
-        content: "이 레슨에서는 JavaScript의 기본 개념을 배웁니다."
-    }, 
-    {
-        seq: 4,
-        title: "JavaScript 커리큘럼 심화편",
-        content: "이 레슨에서는 JavaScript의 심화 내용을 다룹니다."
-    },
-    {
-        seq: 5,
-        title: "Node.js와 Express 커리큘럼 기본편",
-        content: "이 레슨에서는 Node.js의 기본 개념을 배웁니다."
-    }, 
-    {
-        seq: 6,
-        title: "Node.js와 Express 커리큘럼 심화편",
-        content: "이 레슨에서는 Node.js의 심화 내용을 다룹니다."
-    }
+//     {
+//         seq: 3,
+//         title: "JavaScript 커리큘럼 기본편",
+//         content: "이 레슨에서는 JavaScript의 기본 개념을 배웁니다."
+//     }, 
+//     {
+//         seq: 4,
+//         title: "JavaScript 커리큘럼 심화편",
+//         content: "이 레슨에서는 JavaScript의 심화 내용을 다룹니다."
+//     },
+//     {
+//         seq: 5,
+//         title: "Node.js와 Express 커리큘럼 기본편",
+//         content: "이 레슨에서는 Node.js의 기본 개념을 배웁니다."
+//     }, 
+//     {
+//         seq: 6,
+//         title: "Node.js와 Express 커리큘럼 심화편",
+//         content: "이 레슨에서는 Node.js의 심화 내용을 다룹니다."
+//     }
     
-];
+// ];
 
 export function LessonDetailPage () {
     // const {seq} = useParams()
