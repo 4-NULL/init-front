@@ -1,7 +1,7 @@
 
 import { useLoaderData } from 'react-router-dom'; // useNavigate 추가
 
-import { LessonList } from './LessonList';
+import { LessonList } from '@widgets/lesson/ui/LessonList';
 
 
 export function CurriculumDetailPage() {
