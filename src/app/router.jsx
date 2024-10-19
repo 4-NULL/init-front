@@ -7,7 +7,7 @@ import { HomePage } from '@pages/home';
 import { JoinPage } from '@pages/join';
 import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
 import { LoginPage } from '@pages/login';
-import Layout from '@shared/ui/Layout';
+import { Layout } from './Layout';
 
 const router = createBrowserRouter([
   {
