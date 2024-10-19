@@ -1,6 +1,10 @@
-import { CurriculumList } from '@widgets/curriculum';
-import React from 'react';
+
+import { CurriculumList } from './CurriculumList';
+
+
+
 export function CurriculumListPage() {
+    
     return (
         <div>
             <CurriculumList />

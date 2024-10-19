@@ -1,2 +1,2 @@
-export { CurriculumItem } from './ui/CurriculumItem'
-export { CurriculumList } from './ui/CurriculumList'
+export { CurriculumItem } from '../../entities/curriculum/ui/CurriculumItem';
+

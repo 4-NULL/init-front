@@ -1,4 +1,5 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const DUMMY_LESSON_LIST = [
     [
@@ -33,14 +34,19 @@ const DUMMY_LESSON_LIST = [
     ]
 ];
 
-export function LessonList({ curriculumSeq, onLessonClick }) {
+LessonList.propTypes = {
+    curriculumSeq: PropTypes.number.isRequred
+};
+
+export function LessonList({ curriculumSeq }) {
     const lessons = DUMMY_LESSON_LIST[curriculumSeq - 1] || [];
 
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
             {
                 lessons.map(lessonItem => (
-                    <div 
+                    <Link
+                        to={`/lesson/${lessonItem.seq}`} 
                         key={lessonItem.seq} 
                         id={`lesson-${lessonItem.seq}`} 
                         style={{ 
@@ -51,10 +57,10 @@ export function LessonList({ curriculumSeq, onLessonClick }) {
                             boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
                             cursor: 'pointer' 
                         }}
-                        onClick={() => onLessonClick(lessonItem.seq)} // 클릭 시 함수 호출
+                        
                     >
                         <h3>{lessonItem.title}</h3>
-                    </div>
+                    </Link>
                 ))
             }
         </div>

@@ -22,6 +22,10 @@ export default defineConfig({
       {
         find: '@widgets', 
         replacement: path.resolve(__dirname, 'src/widgets')
+      },
+      {
+        find: '@entities', 
+        replacement: path.resolve(__dirname, 'src/entities')
       }
     ]
   }

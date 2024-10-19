@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { CurriculumDetailPage } from '@pages/curriculum-detail';
-import { CurriculumListPage } from '@pages/curriculum-list';
+import { CurriculumDetailPage, loader as curriculumDetailLoader } from '@pages/curriculum-detail';
+import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
 import { ErrorPage } from '@pages/error';
 import { HomePage } from '@pages/home';
 import { JoinPage } from '@pages/join';
@@ -30,12 +30,12 @@ const router = createBrowserRouter([
       {
         path: '/curriculum',
         element: <CurriculumListPage />,
-        children: [
-        ]
+        loader: curriculumListLoader
       },
       {
         path: '/curriculum/:seq',
-        element: <CurriculumDetailPage />
+        element: <CurriculumDetailPage />,
+        loader: curriculumDetailLoader
       },
       {
         path: '/lesson/:seq',
