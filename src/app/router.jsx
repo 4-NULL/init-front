@@ -5,7 +5,7 @@ import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curri
 import { ErrorPage } from '@pages/error';
 import { HomePage } from '@pages/home';
 import { JoinPage } from '@pages/join';
-import { LessonDetailPage } from '@pages/lesson-detail';
+import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
 import { LoginPage } from '@pages/login';
 import Layout from '@shared/ui/Layout';
 
@@ -39,7 +39,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/lesson/:seq',
-        element: <LessonDetailPage />
+        element: <LessonDetailPage />,
+        loader: lessonDetailLoader
       }
     ],
   },

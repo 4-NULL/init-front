@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const DUMMY_LESSON_LIST = [
     
@@ -38,13 +37,13 @@ const DUMMY_LESSON_LIST = [
 ];
 
 export function LessonDetailPage () {
-    const {seq} = useParams()
-    const [lesson, setLesson] = useState({})
+    // const {seq} = useParams()
+    const lesson = useLoaderData()
     // const lesson = DUMMY_LESSON_LIST.filter(item => item.seq == seq);
 
-    useEffect(() => {
-        setLesson(DUMMY_LESSON_LIST.filter(item => item.seq === parseInt(seq))[0])
-    }, [])
+    // useEffect(() => {
+    //     setLesson(DUMMY_LESSON_LIST.filter(item => item.seq === parseInt(seq))[0])
+    // }, [])
 
 
     if (!lesson) {
