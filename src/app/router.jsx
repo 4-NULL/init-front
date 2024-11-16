@@ -4,7 +4,7 @@ import { CurriculumDetailPage, loader as curriculumDetailLoader } from '@pages/c
 import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
 import { ErrorPage } from '@pages/error';
 import { HomePage } from '@pages/home';
-import { JoinPage } from '@pages/join';
+import { JoinPage, joinRequest } from '@pages/join';
 import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
 import { LoginPage } from '@pages/login';
 import { Layout } from './Layout';
@@ -25,7 +25,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/join',
-        element: <JoinPage />
+        element: <JoinPage />,
+        action: joinRequest
       },
       {
         path: '/curriculum',
