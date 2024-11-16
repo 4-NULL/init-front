@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { Button } from "./Button";
 export function Header () {
 
     return (
@@ -8,7 +8,8 @@ export function Header () {
                 logo-sec
             </Link>
             <div>
-                buttons
+                <Button label="test1"/>
+                <Button label="test2"/>
             </div>
 
         </div>
