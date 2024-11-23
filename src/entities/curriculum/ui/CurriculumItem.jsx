@@ -8,14 +8,7 @@ export function CurriculumItem({ item }) {
         <Link
             to={`/curriculum/${seq}`}
             key={seq}
-            style={{
-                display: 'inline-block',
-                border: '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '10px',
-                margin: '10px',
-                cursor: 'pointer',
-            }}
+            className="inline-block border border-gray-300 rounded-xl m-3 p-3  focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer hover:bg-indigo-300 hover:text-white"
         >
             <h2>{title}</h2>
             <p>{description}</p>

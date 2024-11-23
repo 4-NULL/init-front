@@ -1,7 +1,6 @@
 
 import { useLoaderData } from 'react-router-dom'; // useNavigate 추가
-
-import { LessonList } from '@widgets/lesson/ui/LessonList';
+import { LessonList } from '@widgets/lesson';
 
 
 export function CurriculumDetailPage() {
@@ -9,14 +8,12 @@ export function CurriculumDetailPage() {
     const curriculumInfo = useLoaderData()
 
     return (
-        <div>
-
-            <div>
-                해당 커리큘럼의 상세정보 seq: {curriculumInfo.seq}
+        <div className="bg-gray-50 flex justify-center min-h-screen">
+            <div className='mt-6'>
+                <div>해당 커리큘럼의 상세정보 seq: {curriculumInfo.seq}</div>
+                {/* 그 커리큘럼에 속한 레슨 리스트 */}
+                <LessonList curriculumSeq={curriculumInfo.seq} />
             </div>
-            {/* 그 커리큘럼에 속한 레슨 리스트 */}
-            <LessonList curriculumSeq={curriculumInfo.seq} />
         </div>
     )
-
 }

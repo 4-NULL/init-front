@@ -1,12 +1,21 @@
 import { backendBaseUrl } from "@shared/config";
 
+
+const token = localStorage.getItem("accessToken");
+const headers = token ? {
+  "Authorization": `Bearer ${token}`,
+  "Content-Type": "application/json"
+} : {
+  "Content-Type": "application/json"
+};
+
 export const GET = async (targetURL) => {
     if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
 
     const url = backendBaseUrl + targetURL;
 
     try {
-        const res = await fetch(url);
+      const res = await fetch(url, { headers });
         const resJson = await res.json()
         return resJson.data;
     } catch (error) {
@@ -28,9 +37,10 @@ export const POST = async (targetURL, request) => {
     const url = backendBaseUrl + targetURL;
     const res = await fetch(url, {
         method: 'POST',  // HTTP 요청 메소드를 POST로 지정
-        headers: {
-          'Content-Type': 'application/json'  // 요청의 본문이 JSON 형식임을 명시
-        },
+      //   headers: {
+      //     'Content-Type': 'application/json'  // 요청의 본문이 JSON 형식임을 명시
+      // },
+      headers : headers,
         body: JSON.stringify(data)
     })
 
