@@ -6,7 +6,7 @@ import { ErrorPage } from '@pages/error';
 import { HomePage } from '@pages/home';
 import { JoinPage, joinRequest } from '@pages/join';
 import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
-import { LoginPage } from '@pages/login';
+import { LoginPage, loginRequest } from '@pages/login';
 import { Layout } from './Layout';
 
 const router = createBrowserRouter([
@@ -21,7 +21,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <LoginPage />
+        element: <LoginPage />,
+        action: loginRequest
       },
       {
         path: '/join',
