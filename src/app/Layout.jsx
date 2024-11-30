@@ -1,13 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '@shared/ui';
+import { Sidebar } from '@shared/ui';
 export function Layout ()  {
   return (
-    <div className='w-full'>
-      <Header />
-      <main>
+    <div className='flex w-full'>
+      <Sidebar />
+      <main className='flex-1'>
         <Outlet />
       </main>
     </div>
   );
 };
-
