@@ -1,5 +1,5 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logoutRequest } from '@pages/login';
 
 export function HomePage() {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
@@ -11,15 +11,19 @@ export function HomePage() {
   const handleLoginClick = () => {
     navigate('/login'); // 로그인 페이지로 이동
   };
-
+  
   const handleJoinClick = () => {
     navigate('/join'); // 회원가입 페이지로 이동
+  };
+
+  const handleLogoutClick = () => {
+    logoutRequest(); // 로그아웃 Action
   };
 
   return (
     <div>
       <h1>init HomePage</h1>
-      <p>"We are a service 4 Null!"</p>
+      <p>We are a service 4 Null!</p>
 
       <button onClick={goToCurriculumDetail}>커리큘럼 상세 보기</button>
       <button
@@ -33,6 +37,12 @@ export function HomePage() {
         style={{ margin: '10px', padding: '10px 20px' }}
       >
         회원가입
+      </button>
+      <button
+        onClick={handleLogoutClick}
+        style={{ margin: '10px', padding: '10px 20px' }}
+      >
+        로그아웃
       </button>
       
     </div>
