@@ -5,7 +5,7 @@ export const login = async ({ request }) => {
 
     const res = await POST('/member/login', request)
     
-    console.log(res)
+    //console.log(res)
 
     if (res.state === 201) {
         alert('로그인에 성공했습니다.')
@@ -14,7 +14,7 @@ export const login = async ({ request }) => {
         // window.location = '/'
         return redirect('/');  // 페이지 리로드 없이 클라이언트 측 리다이렉션
     } else {
-        alert('로그인에 실패했습니다..')
+        alert(res.message)
         return false;
     }
 }

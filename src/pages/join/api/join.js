@@ -1,5 +1,6 @@
 
 import { POST } from "@shared/api"
+import { redirect } from 'react-router-dom';
 
 export  const joinRequest = async ({request}) => {
     
@@ -8,13 +9,11 @@ export  const joinRequest = async ({request}) => {
     console.log(res)
 
     if (res.state === 201) {
-
         alert('회원가입에 성공했습니다.')
-        window.location = '/'
-        return true
+        return redirect('/');  // 페이지 리로드 없이 클라이언트 측 리다이렉션
         
     } else  {
-        alert('회원가입이 정상적으로 처리되지 않았습니다.')
+        alert(res.message);
         return false
     }
 
