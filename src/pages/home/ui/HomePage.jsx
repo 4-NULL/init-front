@@ -1,5 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { GroupItem } from '@entities/group';
 import { logoutRequest } from '@pages/login';
+import { useNavigate } from 'react-router-dom';
+const groups = [
+  {
+    seq: 1,
+    name: "단비 플러스",
+    memberCount: 20
+  },
+  {
+    seq: 2,
+    name: "단비 마이너스",
+    memberCount: 2
+  },
+  {
+    seq: 3,
+    name: "SC 제일은행",
+    memberCount: 50
+  }
+]
 
 export function HomePage() {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
@@ -21,30 +39,12 @@ export function HomePage() {
   };
 
   return (
-    <div>
-      <h1>init HomePage</h1>
-      <p>We are a service 4 Null!</p>
-
-      <button onClick={goToCurriculumDetail}>커리큘럼 상세 보기</button>
-      <button
-        onClick={handleLoginClick}
-        style={{ margin: '10px', padding: '10px 20px' }}
-      >
-        로그인
-      </button>
-      <button
-        onClick={handleJoinClick}
-        style={{ margin: '10px', padding: '10px 20px' }}
-      >
-        회원가입
-      </button>
-      <button
-        onClick={handleLogoutClick}
-        style={{ margin: '10px', padding: '10px 20px' }}
-      >
-        로그아웃
-      </button>
-      
+    <div className="p-4">
+      <div className='flex flex-col gap-2'>
+        {
+          groups.map(group => <GroupItem key={group.seq} name={group.name} count={group.memberCount} />)
+        }
+      </div>
     </div>
   );
 }
