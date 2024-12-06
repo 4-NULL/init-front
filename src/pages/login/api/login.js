@@ -3,18 +3,11 @@ import { redirect } from 'react-router-dom';
 
 export const login = async ({ request }) => {
 
-    const res = await POST('/member/login', request)
+    const res = await POST('/auth/login', request)
     
-    //console.log(res)
+    console.log(res)
+    localStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰
+    localStorage.setItem("refreshToken", res.data.refreshToken); // 리프레시 토큰
 
-    if (res.state === 201) {
-        alert('로그인에 성공했습니다.')
-        localStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰
-        localStorage.setItem("refreshToken", res.data.refreshToken); // 리프레시 토큰
-        // window.location = '/'
-        return redirect('/');  // 페이지 리로드 없이 클라이언트 측 리다이렉션
-    } else {
-        alert(res.message)
-        return false;
-    }
+    return redirect('/');  // 페이지 리로드 없이 클라이언트 측 리다이렉션
 }
