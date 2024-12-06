@@ -1,23 +1,7 @@
-import { GroupItem } from '@entities/group';
+import { CONST_GROUP_DUMMY, GroupItem } from '@entities/group';
 import { logoutRequest } from '@pages/login';
 import { useNavigate } from 'react-router-dom';
-const groups = [
-  {
-    seq: 1,
-    name: "단비 플러스",
-    memberCount: 20
-  },
-  {
-    seq: 2,
-    name: "단비 마이너스",
-    memberCount: 2
-  },
-  {
-    seq: 3,
-    name: "SC 제일은행",
-    memberCount: 50
-  }
-]
+
 
 export function HomePage() {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
@@ -42,7 +26,7 @@ export function HomePage() {
     <div className="p-4">
       <div className='flex flex-col gap-2'>
         {
-          groups.map(group => <GroupItem key={group.seq} name={group.name} count={group.memberCount} />)
+          CONST_GROUP_DUMMY.map(group => <GroupItem key={group.seq} data={group} />)
         }
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { GroupDetail } from '@entities/group';
 import { CurriculumDetailPage, loader as curriculumDetailLoader } from '@pages/curriculum-detail';
 import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
 import { ErrorPage } from '@pages/error';
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: '/join',
         element: <JoinPage />,
         action: joinRequest
+      },
+      {
+        path: '/group/:seq',
+        element: <GroupDetail />,
       },
       {
         path: '/curriculum',
