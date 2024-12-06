@@ -8,9 +8,6 @@ export const GroupDetail = () => {
     const [groupData, setGroupData] = useState(CONST_GROUP_DUMMY.filter(item => item.seq == params.seq )[0]) 
 
     useEffect(()=> {
-        console.log(params)
-        console.log(CONST_GROUP_DUMMY)
-        console.log(groupData)
     }, [])
     
     
