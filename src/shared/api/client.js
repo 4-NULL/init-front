@@ -56,7 +56,8 @@ export const POST = async (targetURL, request) => {
       }
 
     } catch (error) {
-      console.log("[POST] API Error", error);
+      console.error("[POST] API Error", error);
+      alert("API 요청 중 에러발생")
       return [];
     }
 }
