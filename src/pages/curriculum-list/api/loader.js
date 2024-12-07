@@ -6,7 +6,7 @@ export const loader = async () => {
         if (!res) {
             throw new Error('No data received from server');
         }
-        return res;
+        return res.data;
     } catch (error) {
         throw new Response(JSON.stringify({ message: error.message }), {
             status: 500,

@@ -15,7 +15,7 @@ export function CurriculumList() {
                     <div>
                         {
                             curriculums.map((curriculum) => (
-                                <CurriculumItem key={curriculum.seq} item={curriculum} />
+                                <CurriculumItem key={curriculum.id} item={curriculum} />
                             ))
                         }
                     </div>

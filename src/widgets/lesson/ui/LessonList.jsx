@@ -1,58 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { loader } from '../api/loader';
-// const DUMMY_LESSON_LIST = [
-//     [
-//         {
-//             seq: 1,
-//             title: "React 커리큘럼 기본편"
-//         }, 
-//         {
-//             seq: 2,
-//             title: "React 커리큘럼 심화편"
-//         }
-//     ], // curriculum1 - lesson
-//     [
-//         {
-//             seq: 3,
-//             title: "JavaScript 커리큘럼 기본편"
-//         }, 
-//         {
-//             seq: 4,
-//             title: "JavaScript 커리큘럼 심화편"
-//         }
-//     ], 
-//     [
-//         {
-//             seq: 5,
-//             title: "Node.js와 Express 커리큘럼 기본편"
-//         }, 
-//         {
-//             seq: 6,
-//             title: "Node.js와 Express 커리큘럼 심화편"
-//         }
-//     ]
-// ];
+import { Link, useLoaderData } from 'react-router-dom';
+import { GET } from '@shared/api';
+export function LessonList({ curriculumSeq }) {
 
+    const [lessons, setLessons] = useState([]);
 
-export function LessonList() {
-    const params = useParams()
-
-    const [lessons, setLesson] = useState([])
-    useEffect(() => {
-        
-        const fetchLessons = async () =>  {
-            try {
-                const fetchedLessons = await loader(params.seq)
-                setLesson(fetchedLessons)
-            } catch(err) {
-                console.error(err)
-            }
-        }
+    const fetchLessons = async () => {
+        const res = await GET(`/lessons?curriculum-seq=${curriculumSeq}`)
+        setLessons(res.data);
+    }
+    useEffect(() => { 
         fetchLessons()
-    }, [params.seq])
-
-    useEffect(() => console.log(lessons), [lessons])
+    }, [])
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
             {
