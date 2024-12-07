@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom"
 
 export const GroupItem = ({ data }) => {
     const { name, seq, count } = data
+
+
     return (
         <NavLink to={`/group/${seq}`}>
 

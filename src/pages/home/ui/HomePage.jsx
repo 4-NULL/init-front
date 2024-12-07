@@ -17,7 +17,7 @@ export function HomePage() {
     <div className="p-4">
       <div className='flex flex-col gap-2'>
         {
-          groups.map(group => <GroupItem key={group.seq} data={group.name} />)
+          groups.map(group => <GroupItem key={group.seq} data={group} />)
         }
       </div>
     </div>
