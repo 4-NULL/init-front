@@ -45,11 +45,17 @@ export const GET = async (targetURL) => {
 };
 
 // POST 요청 (ex. create)
-export const POST = async (targetURL, data) => {
+export const POST = async (targetURL, request) => {
   if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
-  if(!data) return console.error("request body가 지정되지 않았습니다.")
+
 
   const url = backendBaseUrl + targetURL;
+  const formData = await request.formData();
+  const data = {};
+  
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
 
   try {
     const response = await fetch(url, {
