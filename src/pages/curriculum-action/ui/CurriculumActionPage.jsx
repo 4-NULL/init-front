@@ -1,5 +1,5 @@
 
-import { CurriculumList } from './CurriculumList';
+import { CurriculumList } from '@pages/curriculum-list';
 
 
 

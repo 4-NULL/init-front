@@ -4,7 +4,7 @@ import { GroupDetail } from '@entities/group';
 import { CurriculumDetailPage, loader as curriculumDetailLoader } from '@pages/curriculum-detail';
 import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
 import { ErrorPage } from '@pages/error';
-import { HomePage, loader as groupLoader } from '@pages/home';
+import { HomePage } from '@pages/home';
 import { JoinPage, joinRequest } from '@pages/join';
 import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
 import { LoginPage, loginRequest } from '@pages/login';
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
-        loader: groupLoader
+
       },
       {
         path: '/login',
