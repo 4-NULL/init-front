@@ -11,8 +11,8 @@ export function JoinPage() {
                 <Form action="#" method="POST">
                     <Input
                         type="text"
-                        id="user"
-                        name="user"
+                        id="name"
+                        name="name"
                         label="이름"
                         placeholder="이름을 입력하세요"
                         required={true}
