@@ -1,13 +1,23 @@
-import { CONST_GROUP_DUMMY, GroupItem } from '@entities/group';
+import { useEffect } from 'react';
+
+import { GroupItem } from '@entities/group';
+
+import { useLoaderData } from 'react-router-dom';
 
 
 export function HomePage() {
 
+  const groups = useLoaderData();
+
+  useEffect(() => {
+    console.log(groups)
+  }, [])
+  
   return (
     <div className="p-4">
       <div className='flex flex-col gap-2'>
         {
-          CONST_GROUP_DUMMY.map(group => <GroupItem key={group.seq} data={group} />)
+          groups.map(group => <GroupItem key={group.seq} data={group.name} />)
         }
       </div>
     </div>
