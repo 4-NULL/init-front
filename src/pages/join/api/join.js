@@ -4,7 +4,7 @@ import { redirect } from 'react-router-dom';
 
 export  const joinRequest = async ({request}) => {
     
-    const res = await POST('/auth/join', request)
+    const res = await POST('/auth/signup', request)
     
     console.log(res)
 
