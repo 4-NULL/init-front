@@ -1,2 +1,2 @@
-export { loader } from './api/loader';
 export { CurriculumActionPage } from './ui/CurriculumActionPage';
+export { curriculumRequest } from './api/action';

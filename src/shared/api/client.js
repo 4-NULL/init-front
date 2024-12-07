@@ -11,119 +11,72 @@ const getHeaderToken = () => {
     };
 }
 
-// GET 요청 (ex. select)
-export const GET = async (targetURL) => {
-  if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
+// 공통 fetch 요청
+const fetchRequest = async (method, targetURL, bodyData = null) => {
+  if (!targetURL) {
+    console.error("targetURL이 지정되지 않았습니다.");
+    return null;
+  }
 
   const url = backendBaseUrl + targetURL;
 
   try {
-    const response = await fetch(url, {
-      method: 'GET',
+    const options = {
+      method,
       headers: getHeaderToken(),
-    });
+    };
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // POST, PUT, PATCH 요청 시
+    if (bodyData) {
+      if (bodyData instanceof FormData) {
+        // const formData = await bodyData.formData();
+        const data = {};
+  
+        for (const [key, value] of bodyData.entries()) {
+          data[key] = value;
+        }
+        options.body = JSON.stringify(data)
+        
+      } else {
+        options.body = JSON.stringify(bodyData)
+      }
     }
 
-    const text = await response.text();
-    if (!text) {
-      return null;
+    const res = await fetch(url, options);
+
+    if (res.ok) {
+      const resJson = await res.json();
+      return resJson;
+    } else {
+      throw new Error(`[${method}] Network res was not ok`);
     }
 
-    try {
-      return JSON.parse(text);
-    } catch (e) {
-      console.error('Failed to parse JSON response:', text);
-      throw new Error('Invalid JSON response from server');
-    }
   } catch (error) {
-    console.error('Error:', error);
-    throw error;
+    console.log(`[${method}][API ERROR] -> `, error);
+    return [];
   }
-};
+}
+
+// GET 요청 (ex. select)
+export const GET = async (targetURL) => {
+  return await fetchRequest("GET", targetURL);
+}
 
 // POST 요청 (ex. create)
 export const POST = async (targetURL, request) => {
-  if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
-
-
-  const url = backendBaseUrl + targetURL;
-  const formData = await request.formData();
-  const data = {};
-  
-  for (const [key, value] of formData.entries()) {
-    data[key] = value;
-  }
-
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: getHeaderToken(),
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-};
+  return await fetchRequest("POST", targetURL, request);
+}
 
 // PUT 요청 (ex. 전체 update)
-export const PUT = async (targetURL, data) => {
-  if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
-  if(!data) return console.error("request body가 지정되지 않았습니다.")
-
-  const url = backendBaseUrl + targetURL;
-
-  try {
-    const response = await fetch(url, {
-      method: 'PUT',
-      headers: getHeaderToken(),
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-};
+export const PUT = async (targetURL, request) => {
+  return await fetchRequest("PUT", targetURL, request);
+}
 
 // PATCH 요청 (ex. 일부 update)
-export const PATCH = async (targetURL, data) => {
-  if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
-  if(!data) return console.error("request body가 지정되지 않았습니다.")
-
-  const url = backendBaseUrl + targetURL;
-
-  try {
-    const response = await fetch(url, {
-      method: 'PATCH',
-      headers: getHeaderToken(),
-      body: JSON.stringify(data)
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-};
-
+export const PATCH = async (targetURL, request) => {
+  return await fetchRequest("PATCH", targetURL, request);
+}
 // DELETE 요청 (ex. 삭제)
 export const DELETE = async (targetURL) => {
-  if(!targetURL) return console.error("targetURL이 지정되지 않았습니다.")
-
-  const url = backendBaseUrl + targetURL;
-
-  try {
-    const response = await fetch(url, {
-      method: 'DELETE',
-      headers: getHeaderToken(),
-    });
-    return await response.json();
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-};
+  return await fetchRequest("DELETE", targetURL);
+}
