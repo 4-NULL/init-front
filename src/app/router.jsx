@@ -9,6 +9,7 @@ import { JoinPage, joinRequest } from '@pages/join';
 import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
 import { LoginPage, loginRequest } from '@pages/login';
 import { Layout } from './Layout';
+import { CurriculumActionPage } from '../pages/curriculum-action/ui/CurriculumActionPage';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
         path: '/curriculum/:seq',
         element: <CurriculumDetailPage />,
         loader: curriculumDetailLoader
+      },
+      {
+        path: '/curriculum/:actionType/:seq?',
+        element: <CurriculumActionPage />,
+        loader: curriculumListLoader,
+        // action: curriculumRequest
       },
       {
         path: '/lesson/:seq',
