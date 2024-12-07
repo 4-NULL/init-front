@@ -28,8 +28,8 @@ export function JoinPage() {
                     <Input
                         type="id"
                         id="id"
-                        name="id" l
-                        abel="아이디"
+                        name="id"
+                        label="아이디"
                         placeholder="아이디를 입력하세요"
                         required={true}
                     />
