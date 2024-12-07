@@ -1,5 +1,5 @@
 
-import { CurriculumItem } from '@entities/curriculum';
+import { CurriculumItem } from '@entities/curriculums';
 import { useLoaderData } from 'react-router-dom';
 
 export function CurriculumList() {

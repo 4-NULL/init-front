@@ -1,7 +1,7 @@
 import { isEmpty } from "../shared/utils/utils";
 
 // Vite에서 환경 변수 사용
-const baseURL = `${import.meta.env.VITE_API_URL}/curriculum` || 'http://localhost:8080/api/v1/curriculum';
+const baseURL = `${import.meta.env.VITE_API_URL}/curriculums` || 'http://localhost:8080/api/v1/curriculums';
 
 console.log(baseURL);
 
