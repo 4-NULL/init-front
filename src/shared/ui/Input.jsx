@@ -8,8 +8,6 @@ export function Input({
     minLen = "",
     maxLen = "",
     placeholder = "",
-    value = null,
-    onChange = function() {},
     required = false
 }) {
     return (
@@ -23,8 +21,6 @@ export function Input({
                 minLength={minLen}
                 maxLength={maxLen}
                 placeholder={placeholder}
-                value={value}
-                onChange={onChange}
                 required={required}
             />
         </div>
@@ -39,7 +35,5 @@ Input.propTypes = {
     minLen: PropTypes.string,
     maxLen: PropTypes.string,
     placeholder: PropTypes.string,
-    value: PropTypes.string,
-    onChange: PropTypes.func,
     required: PropTypes.bool
 }

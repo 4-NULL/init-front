@@ -28,22 +28,17 @@ const fetchRequest = async (method, targetURL, bodyData = null) => {
 
     // POST, PUT, PATCH 요청 시
     if (bodyData) {
-      if (bodyData instanceof FormData) {
-        // const formData = await bodyData.formData();
-        const data = {};
-  
-        for (const [key, value] of bodyData.entries()) {
-          data[key] = value;
-        }
-        options.body = JSON.stringify(data)
-        
-      } else {
-        options.body = JSON.stringify(bodyData)
+      const data = {};
+      const formData = await bodyData.formData();
+      
+      for (const [key, value] of formData.entries()) {
+        data[key] = value;
       }
+      
+      options.body = JSON.stringify(data)
     }
 
     const res = await fetch(url, options);
-
     if (res.ok) {
       const resJson = await res.json();
       return resJson;
