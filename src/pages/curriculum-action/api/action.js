@@ -1,44 +1,39 @@
-import { POST, PUT, PATCH, DELETE } from "@shared/api";
+import { POST, PUT, DELETE } from "@shared/api";
+import { redirect } from "react-router-dom";
 
-export const curriculumRequest = async ({ params }) => {
-    const { actionType, seq } = params || {};
 
-    if (!actionType) {
-        throw new Error("actionType이 존재하지 않습니다.");
+export const createAction = async ({ request }) => {
+    const res = await POST(`/curriculums`, request);
+    
+    if (res.success) {
+        alert(res.message);
+        return redirect('/curriculum');
     }
+}
 
-    try {
-        switch (actionType) {
-            case "create": {
-                // 등록
-                return await POST(`/curriculums`, params);
-            }
+export const editAction = async ({ params }) => {
+    const { seq } = params;
 
-            case "edit": {
-                // 전체 업데이트
-                if (!seq) throw new Error("커리큘럼 ID가 없습니다.", params);
-                return await PUT(`/curriculums/${seq}`, params);
-            }
-            case "partial-edit": {
-                // 부분 업데이트
-                if (!seq) throw new Error("커리큘럼 ID가 없습니다.", params);
-                return await PATCH(`/curriculums/${seq}`, params);
-            }
+    // 정보 수정시 seq만 가져옴..왜지?
 
-            case "delete": {
-                // 삭제
-                if (!seq) {
-                    throw new Error("커리큘럼 ID가 없습니다.");
-                }
-                return await DELETE(`/curriculums/${seq}`);
-            }
+    
+    if (!seq) throw new Error("커리큘럼 번호가 없습니다.");
+    const res = await PUT(`/curriculums/${seq}`, params);
 
-            default: {
-                throw new Error("정의되지 않은 actionType입니다 -> ", actionType);
-            }
-        }
-    } catch (error) {
-        console.error("API 요청 실패: ", error);
-        throw error;
+    if (res.success) {
+        alert(res.message);
+        return redirect('/curriculum');
+    }
+}
+
+export const deleteAction = async ({ params }) => {
+    const { seq } = params;
+    
+    if (!seq) throw new Error("커리큘럼 번호가 없습니다.");
+
+    const res = await DELETE(`/curriculums/${seq}`);
+    if (res.success) {
+        alert(res.message);
+        return redirect('/curriculum');
     }
 }

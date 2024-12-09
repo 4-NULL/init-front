@@ -1,2 +1,2 @@
 export { CurriculumActionPage } from './ui/CurriculumActionPage';
-export { curriculumRequest } from './api/action';
+export { createAction, editAction, deleteAction } from './api/action';
