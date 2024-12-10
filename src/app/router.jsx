@@ -1,15 +1,26 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { GroupDetail } from '@entities/group';
-import { CurriculumDetailPage, loader as curriculumDetailLoader } from '@pages/curriculum-detail';
+import {
+  CurriculumDetailPage,
+  loader as curriculumDetailLoader,
+  CurriculumActionPage,
+  createAction as curriculumCreateAction,
+  editAction as curriculumEditAction
+} from '@pages/curriculum-detail';
 import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
 import { ErrorPage } from '@pages/error';
 import { HomePage, loader as groupLoader } from '@pages/home';
 import { JoinPage, joinRequest } from '@pages/join';
-import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
+import {
+  LessonDetailPage,
+  loader as lessonDetailLoader,
+  LessonActionPage,
+  createAction as lessonCreateAction,
+  editAction as lessonEditAction
+} from '@pages/lesson-detail';
 import { LoginPage, loginRequest } from '@pages/login';
 import { Layout } from './Layout';
-import { CurriculumActionPage, createAction, editAction } from '@pages/curriculum-action';
 
 const router = createBrowserRouter([
   {
@@ -49,22 +60,32 @@ const router = createBrowserRouter([
       {
         path: '/curriculum/create',
         element: <CurriculumActionPage />,
-        action: createAction
+        action: curriculumCreateAction
       },
       {
         path: '/curriculum/edit/:seq',
         element: <CurriculumActionPage />,
         loader: curriculumListLoader,
-        action: editAction
+        action: curriculumEditAction
       },
       {
         path: '/lesson/:seq',
         element: <LessonDetailPage />,
         loader: lessonDetailLoader
+      },
+      {
+        path: '/lesson/create/:curriculumSeq',
+        element: <LessonActionPage />,
+        action: lessonCreateAction
+      },
+      {
+        path: '/lesson/edit/:seq',
+        element: <LessonActionPage />,
+        loader: lessonDetailLoader,
+        action: lessonEditAction
       }
     ],
   },
-  
 ]);
 
 export default router;

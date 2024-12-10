@@ -12,7 +12,7 @@ export function CurriculumList() {
                     className="flex text-center p-3 m-3 text-black border border-blue-300 rounded-lg hover:bg-blue-500 hover:text-white"
                 >커리큘럼 등록
                 </Link>
-                <h1>커리큘럼 리스트</h1>
+                <h1 className="underline border-2 text-center">커리큘럼 리스트</h1>
                 {
                     curriculums.length > 0 ?
                     (
@@ -25,7 +25,7 @@ export function CurriculumList() {
                         </div>
 
                     ) : (
-                        <div>데이터 형식 오류: 커리큘럼 데이터가 배열이 아닙니다.</div>
+                        <div>커리큘럼을 등록해주세요</div>
                     )
                 }
             </div>

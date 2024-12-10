@@ -1,20 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@shared/ui";
-import { deleteAction } from '@pages/curriculum-action';
+import { deleteAction } from '@pages/curriculum-detail';
 
 export function CurriculumItem({ item }) {
     const { seq, title, description } = item; // 커리큘럼의 seq, title, description을 구조 분해 할당
+    const navigate  = useNavigate();
+
+    // 커리큘럼 삭제 핸들러
+    const handleCurriculumDelete = (seq) => {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            deleteAction(seq);
+            navigate (-1); // 삭제 후 뒤로가기
+        }
+    }
 
     return (
         <>
-            <div className="inline-block border border-fuchsia-400 m-3 p-3">
+            <div className="inline-block border border-fuchsia-400 m-3 px-14 py-5">
                 <div className="flex space-x-2 items-center">
                     <Link
                         to={`/curriculum/edit/${seq}`}
                         className="flex px-3 py-2 text-black border border-green-500 rounded-lg hover:bg-green-500 hover:text-white"
                     >Edit</Link>
                     <Button
-                        onClick={() => { deleteAction(seq) }}
+                        onClick={() => { handleCurriculumDelete(seq) }}
                         className="flex px-3 py-2 text-black border border-red-500 rounded-lg hover:bg-red-500 hover:text-white"
                         label="Del"
                     />

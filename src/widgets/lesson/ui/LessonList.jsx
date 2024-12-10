@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GET } from '@shared/api';
 export function LessonList({ curriculumSeq }) {
 
@@ -12,6 +12,7 @@ export function LessonList({ curriculumSeq }) {
     useEffect(() => { 
         fetchLessons()
     }, [])
+
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
             {
@@ -20,16 +21,8 @@ export function LessonList({ curriculumSeq }) {
                         <Link
                             id={`lesson-${lessonItem.seq}`} 
                             to={`/lesson/${lessonItem.seq}`} 
+                            className="border border-gray-300 rounded-lg p-2.5 w-48 shadow-sm cursor-pointer"
                             key={lessonItem.seq} 
-                            style={{ 
-                                border: '1px solid #ccc', 
-                                borderRadius: '8px', 
-                                padding: '10px', 
-                                width: '200px', 
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
-                                cursor: 'pointer' 
-                            }}
-                            
                         >
                             <h3>{lessonItem.title}</h3>
                         </Link>
