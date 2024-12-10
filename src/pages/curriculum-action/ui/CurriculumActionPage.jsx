@@ -3,23 +3,33 @@ import { Form, useLoaderData, useParams } from "react-router-dom";
 import { Input, Submit } from '@shared/ui';
 import { useEffect, useState } from "react";
 
-export function CurriculumActionPage() {;
+export function CurriculumActionPage() {
     const info = useLoaderData()
     const { seq } = useParams();
     const [method, setMethod] = useState("");
     const [actionTxt, setActionTxt] = useState("");
     const [formData, setFormData] = useState({
+        seq: info ?.seq || "",
         title: info ?.title || "",
         description: info ?.description || ""
     });
     
-    // 렌더링시 실행
+    // 커리큘럼 번호가 변경될 때마다 실행
     useEffect(() => {
         setMethod(!seq ? "POST" : "PUT");
         setActionTxt(!seq ? "등록" : "변경");
     }, [seq]);
+    
+    // 정보가 변경될 때마다 실행
+    useEffect(() => {
+        setFormData({
+            seq: info ?.seq || "",
+            title: info ?.title || "",
+            description: info ?.description || ""
+        })
+    }, [info])
 
-
+    // 정보변경시 value 변경
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
@@ -60,4 +70,4 @@ export function CurriculumActionPage() {;
             </div>
         </div>
     );
-};
+}
