@@ -43,13 +43,14 @@ export const editAction = async ({ params, request }) => {
  * 커리큘럼 삭제
  * @param {*} seq - 커리큘럼 번호
  * @returns 
- */
+*/
 export const deleteAction = async (seq) => {
     if (!seq) throw new Error("커리큘럼 번호가 없습니다.");
 
     const res = await DELETE(`/curriculums/${seq}`);
     if (res.success) {
         alert("커리큘럼 삭제가 완료되었습니다.");
+        return redirect('/curriculum');
     } else {
         alert("커리큘럼 삭제 중 오류발생!");
         return;

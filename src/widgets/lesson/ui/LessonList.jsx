@@ -6,7 +6,7 @@ export function LessonList({ curriculumSeq }) {
     const [lessons, setLessons] = useState([]);
 
     const fetchLessons = async () => {
-        const res = await GET(`/lessons?curriculum-seq=${curriculumSeq}`)
+        const res = await GET(`/lessons/search?curriculum-seq=${curriculumSeq}`)
         setLessons(res.data);
     }
     useEffect(() => { 
