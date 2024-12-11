@@ -17,7 +17,7 @@ export function CurriculumItem({ item }) {
             <div className="inline-block border border-fuchsia-400 m-3 px-14 py-5">
                 <div className="flex space-x-2 items-center">
                     <Link
-                        to={`/curriculum/edit/${seq}`}
+                        to={`/curriculum/${seq}/edit`}
                         className="flex px-3 py-2 text-black border border-green-500 rounded-lg hover:bg-green-500 hover:text-white"
                     >Edit</Link>
                     <Button

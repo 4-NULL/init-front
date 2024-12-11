@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         action: curriculumCreateAction
       },
       {
-        path: '/curriculum/edit/:seq',
+        path: '/curriculum/:seq/edit',
         element: <CurriculumActionPage />,
         loader: curriculumListLoader,
         action: curriculumEditAction
@@ -74,12 +74,12 @@ const router = createBrowserRouter([
         loader: lessonDetailLoader
       },
       {
-        path: '/lesson/create/:curriculumSeq',
+        path: '/lesson/:curriculumSeq/create',
         element: <LessonActionPage />,
         action: lessonCreateAction
       },
       {
-        path: '/lesson/edit/:seq',
+        path: '/lesson/:seq/edit',
         element: <LessonActionPage />,
         loader: lessonDetailLoader,
         action: lessonEditAction

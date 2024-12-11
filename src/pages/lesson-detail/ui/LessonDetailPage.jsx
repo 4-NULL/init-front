@@ -23,7 +23,7 @@ export function LessonDetailPage () {
         <div className="bg-gray-50 flex justify-center min-h-screen">
             <div className="flex space-x-2 items-center">
                 <Link
-                    to={`/lesson/edit/${seq}`}
+                    to={`/lesson/${seq}/edit`}
                     className="flex px-3 py-2 text-black border border-green-500 rounded-lg hover:bg-green-500 hover:text-white"
                 >Edit</Link>
                 <Button

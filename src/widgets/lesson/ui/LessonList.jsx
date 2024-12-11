@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GET } from '@shared/api';
-export function LessonList({ curriculumSeq }) {
 
+export function LessonList({ curriculumSeq, keyword }) {
     const [lessons, setLessons] = useState([]);
 
-    const fetchLessons = async () => {
-        const res = await GET(`/lessons/search?curriculum-seq=${curriculumSeq}`)
+    const fetchLessons = async (seq, searchKeyword) => {
+        let url = `/lessons/search?curriculum-seq=${seq}`;
+        if (searchKeyword) {
+            url += `&keyword=${searchKeyword}`;
+        }
+
+        const res = await GET(url);
         setLessons(res.data);
     }
     useEffect(() => { 
-        fetchLessons()
-    }, [])
+        fetchLessons(curriculumSeq, keyword)
+    }, [keyword])
 
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
