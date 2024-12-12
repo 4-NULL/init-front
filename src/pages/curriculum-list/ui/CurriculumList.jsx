@@ -23,14 +23,11 @@ export function CurriculumList() {
         <div className="mt-6">
             <div className='mt-6'>
 
-                <Search
-                    inputLabel="Search"
-                    handleInputOnChange={(e) => {
-                        setSearchKeyword(e.target.value); // 검색 데이터 업데이트
-                    }}
-                />
+                {/* 검색버튼 */}
+                <Search handleInputOnChange={(e) => { setSearchKeyword(e.target.value); }} />
 
-                <Link to="/curriculum/create"
+                <Link
+                    to="/curriculum/create"
                     className="flex text-center p-3 m-3 text-black border border-blue-300 rounded-lg hover:bg-blue-500 hover:text-white"
                 >커리큘럼 등록
                 </Link>

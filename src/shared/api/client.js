@@ -1,10 +1,18 @@
 import { backendBaseUrl } from "@shared/config";
 
 const getHeaderToken = () => {
-  const token = localStorage.getItem("accessToken");
-  return token
+  
+  const saveUser = localStorage.getItem("user");
+  let accessToken;
+
+  if (saveUser) {
+    const info = JSON.parse(saveUser);
+    accessToken = info.accessToken;
+  }
+
+  return accessToken
     ? {
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     }: {
       "Content-Type": "application/json",
