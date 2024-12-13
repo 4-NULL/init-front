@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 export function CurriculumList() {
     const curriculums = useLoaderData();
-    const [filterCurriculums, setFilteredCurriculums] = useState(curriculums); // 필터린한 데이터의 상태
+    const [filterCurriculums, setFilteredCurriculums] = useState(curriculums); // 필터링한 데이터
     const [searchKeyword, setSearchKeyword] = useState(""); // 수업 검색
 
     // 검색어 변경될 때마다 필터링
@@ -28,10 +28,10 @@ export function CurriculumList() {
 
                 <Link
                     to="/curriculum/create"
-                    className="flex text-center p-3 m-3 text-black border border-blue-300 rounded-lg hover:bg-blue-500 hover:text-white"
+                    className="flex justify-center p-3 m-3 text-black border border-blue-300 rounded-lg hover:bg-blue-500 hover:text-white"
                 >커리큘럼 등록
                 </Link>
-                <h1 className="underline border-2 text-center">커리큘럼 리스트</h1>
+                {/* <h1 className="underline border-2 text-center">커리큘럼 리스트</h1> */}
                 {
                     filterCurriculums.length > 0 ?
                     (

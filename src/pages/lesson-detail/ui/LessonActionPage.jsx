@@ -46,7 +46,7 @@ export function LessonActionPage() {
     return (
         <div className="bg-gray-50 flex items-center justify-center min-h-screen">
             <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                <h1 className="text-2xl font-bold text-center mb-6">레슨 {actionTxt}</h1>
+                <h1 className="text-2xl font-bold text-center mb-6">수업 {actionTxt}</h1>
                 <Form action="#" method={method}>
                     <input type="hidden" id="curriculumSeq" name="curriculumSeq" value={formData.curriculumSeq}></input>
                     <Input

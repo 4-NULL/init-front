@@ -14,8 +14,8 @@ export function CurriculumItem({ item }) {
 
     return (
         <>
-            <div className="inline-block border border-fuchsia-400 m-3 px-14 py-5">
-                <div className="flex space-x-2 items-center">
+            <div className="inline-block border border-fuchsia-400 m-3 px-5 py-5 w-72 h-72 ">
+                <div className="flex justify-center space-x-2 items-center">
                     <Link
                         to={`/curriculum/${seq}/edit`}
                         className="flex px-3 py-2 text-black border border-green-500 rounded-lg hover:bg-green-500 hover:text-white"
@@ -26,13 +26,15 @@ export function CurriculumItem({ item }) {
                         label="Del"
                     />
                 </div>
-                <Link
-                    to={`/curriculum/${seq}`}
-                    className="inline-block border border-gray-300 rounded-xl m-3 p-3  focus:outline-none focus:ring-2 focus:ring-indigo-200 cursor-pointer hover:bg-indigo-200"
-                >
-                    <h2 className="bg-fuchsia-300 rounded-xl p-1">{title}</h2>
-                    <p>{description}</p>
-                </Link>
+                <div className="flex justify-center">
+                    <Link
+                        to={`/curriculum/${seq}`}
+                        className="flex flex-col w-48 h-48 rounded-xl m-3 p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-200 cursor-pointer hover:bg-indigo-200"
+                    >
+                        <h2 className="bg-fuchsia-300 rounded-xl p-1 text-center overflow-hidden text-ellipsis">{title}</h2>
+                        <p className="overflow-hidden text-ellipsis">{description}</p>
+                    </Link>
+                </div>
             </div>
         </>
     );
