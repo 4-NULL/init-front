@@ -1,15 +1,26 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { GroupDetail } from '@entities/group';
-import { CurriculumDetailPage, loader as curriculumDetailLoader } from '@pages/curriculum-detail';
+import {
+  CurriculumDetailPage,
+  loader as curriculumDetailLoader,
+  CurriculumActionPage,
+  createAction as curriculumCreateAction,
+  editAction as curriculumEditAction
+} from '@pages/curriculum-detail';
 import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
 import { ErrorPage } from '@pages/error';
 import { HomePage, loader as groupLoader } from '@pages/home';
 import { JoinPage, joinRequest } from '@pages/join';
-import { LessonDetailPage, loader as lessonDetailLoader } from '@pages/lesson-detail';
+import {
+  LessonDetailPage,
+  loader as lessonDetailLoader,
+  LessonActionPage,
+  createAction as lessonCreateAction,
+  editAction as lessonEditAction
+} from '@pages/lesson-detail';
 import { LoginPage, loginRequest } from '@pages/login';
 import { Layout } from './Layout';
-import { CurriculumActionPage } from '../pages/curriculum-action/ui/CurriculumActionPage';
 
 const router = createBrowserRouter([
   {
@@ -47,19 +58,34 @@ const router = createBrowserRouter([
         loader: curriculumDetailLoader
       },
       {
-        path: '/curriculum/:actionType/:seq?',
+        path: '/curriculum/create',
+        element: <CurriculumActionPage />,
+        action: curriculumCreateAction
+      },
+      {
+        path: '/curriculum/:seq/edit',
         element: <CurriculumActionPage />,
         loader: curriculumListLoader,
-        // action: curriculumRequest
+        action: curriculumEditAction
       },
       {
         path: '/lesson/:seq',
         element: <LessonDetailPage />,
         loader: lessonDetailLoader
+      },
+      {
+        path: '/lesson/:curriculumSeq/create',
+        element: <LessonActionPage />,
+        action: lessonCreateAction
+      },
+      {
+        path: '/lesson/:seq/edit',
+        element: <LessonActionPage />,
+        loader: lessonDetailLoader,
+        action: lessonEditAction
       }
     ],
   },
-  
 ]);
 
 export default router;

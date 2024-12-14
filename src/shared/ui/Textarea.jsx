@@ -1,9 +1,9 @@
 import PropTypes from "prop-types"
 
-export function Input({
-    type = "text",
+export function Textarea({
     id,
     name,
+    rows = 5,
     label,
     minLen = "",
     maxLen = "",
@@ -15,11 +15,11 @@ export function Input({
     return (
         <div className="mb-6">
             <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label>
-            <input
-                type={type}
+            <textarea
                 id={id}
                 name={name}
-                className="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                rows={rows}
+                className="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
                 minLength={minLen}
                 maxLength={maxLen}
                 placeholder={placeholder}
@@ -31,10 +31,10 @@ export function Input({
     )
 }
 
-Input.propTypes = {
-    type: PropTypes.string,
+Textarea.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
+    rows: PropTypes.string,
     label: PropTypes.string,
     minLen: PropTypes.string,
     maxLen: PropTypes.string,

@@ -1,8 +1,16 @@
 import { GET } from "@shared/api"
 
-export const loader = async () => {
+export const loader = async ({ params }) => {
+    const { seq } = params;
     try {
-        const res = await GET("/curriculums");
+        let res;
+
+        if (seq) {
+            res = await GET(`/curriculums/${seq}`);
+        } else {
+            res = await GET("/curriculums");
+        }
+
         if (!res) {
             throw new Error('No data received from server');
         }

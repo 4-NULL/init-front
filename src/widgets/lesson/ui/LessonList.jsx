@@ -1,35 +1,43 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GET } from '@shared/api';
-export function LessonList({ curriculumSeq }) {
 
-    const [lessons, setLessons] = useState([]);
-
+export function LessonList({ curriculumSeq, keyword = "" }) {
+    const [lessons, setLessons] = useState([]); // 전체 데이터
+    const [filterLessons, setFilteredLessons] = useState([]); // 필터린한 데이터 저장
     const fetchLessons = async () => {
-        const res = await GET(`/lessons?curriculum-seq=${curriculumSeq}`)
+        const res = await GET(`/lessons/search?curriculum-seq=${curriculumSeq}`)
         setLessons(res.data);
     }
-    useEffect(() => { 
-        fetchLessons()
-    }, [])
+
+    // 커리큘럼 코드가 변경할 때 마다 실행
+    useEffect(() => {
+        fetchLessons();
+    }, [curriculumSeq]);
+
+    // 검색어 변경될 때마다 필터링
+    useEffect(() => {
+        if (keyword.trim() === "") {
+            setFilteredLessons(lessons);
+        } else {
+            setFilteredLessons(
+                lessons.filter((item) =>
+                    item.title?.toLowerCase().includes(keyword.toLowerCase())
+                )
+            )
+        }
+    }, [keyword, lessons]);
+
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
             {
-                lessons.length > 0 
-                    ? lessons.map(lessonItem => (
+                filterLessons.length > 0 ?
+                    filterLessons.map(lessonItem => (
                         <Link
                             id={`lesson-${lessonItem.seq}`} 
                             to={`/lesson/${lessonItem.seq}`} 
+                            className="border border-gray-300 rounded-lg p-2.5 w-48 shadow-sm cursor-pointer"
                             key={lessonItem.seq} 
-                            style={{ 
-                                border: '1px solid #ccc', 
-                                borderRadius: '8px', 
-                                padding: '10px', 
-                                width: '200px', 
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
-                                cursor: 'pointer' 
-                            }}
-                            
                         >
                             <h3>{lessonItem.title}</h3>
                         </Link>

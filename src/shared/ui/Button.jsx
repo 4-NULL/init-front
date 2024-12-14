@@ -1,7 +1,10 @@
 import PropTypes from "prop-types"
-export function Button({ label, className = "" }) {
+export function Button({ label, className = "", onClick }) {
     return (
-        <button className={className}>
+        <button
+            className={className}
+            onClick={onClick}
+        >
             {label}
         </button>
     )
@@ -9,5 +12,6 @@ export function Button({ label, className = "" }) {
 
 Button.propTypes = {
     label: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    onClick: PropTypes.func
 }

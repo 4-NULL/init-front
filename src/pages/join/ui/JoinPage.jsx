@@ -38,6 +38,8 @@ export function JoinPage() {
                         id="phoneNumber"
                         name="phoneNumber"
                         label="휴대폰번호"
+                        minLen="11"
+                        maxLen="11"
                         placeholder="'-'을 제외하고 입력하세요"
                         required={true}
                     />
