@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         element: <GroupDetail />,
       },
       {
-        path: '/curriculum',
+      path: '/curriculum',
         element: <CurriculumListPage />,
         loader: curriculumListLoader
       },
