@@ -2,21 +2,22 @@ import { backendBaseUrl } from "@shared/config";
 
 const getHeaderToken = () => {
   
-  const saveUser = localStorage.getItem("user");
+  const savedUser = localStorage.getItem("user");
   let accessToken;
 
-  if (saveUser) {
-    const info = JSON.parse(saveUser);
+  if (savedUser) {
+    const info = JSON.parse(savedUser);
     accessToken = info.accessToken;
   }
 
   return accessToken
     ? {
-      "Authorization": `Bearer ${accessToken}`,
+        "Authorization": `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      }
+    : {
       "Content-Type": "application/json",
-    }: {
-      "Content-Type": "application/json",
-    };
+      };
 }
 
 // 공통 fetch 요청
@@ -36,14 +37,27 @@ const fetchRequest = async (method, targetURL, bodyData = null) => {
 
     // POST, PUT, PATCH 요청 시
     if (bodyData) {
-      const data = {};
-      const formData = await bodyData.formData();
+      let data = {};
       
-      for (const [key, value] of formData.entries()) {
-        data[key] = value;
+      if (bodyData instanceof FormData) {
+        // bodyData가 'FormData' 인 경우
+        bodyData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+      } else if (bodyData && typeof bodyData.formData === 'function') {
+        // bodyData가 'FormData' 객체는 아니지만 'formData' 메서드를 제공하는 객체일때
+        const formData = await bodyData.formData();
+        for (const [key, value] of formData.entries()) {
+          data[key] = value;
+        }
+
+      } else {
+        // 들어온 객체 그대로 처리
+        data = { ...bodyData };
       }
-      
-      options.body = JSON.stringify(data)
+
+      options.body = JSON.stringify(data);
     }
 
     const res = await fetch(url, options);
