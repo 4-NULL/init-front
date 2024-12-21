@@ -2,14 +2,14 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchUserData } from "../api/callUserData";
 
-export function Sidebar() {
+export function Sidebar({user, setUser}) {
   const location = useLocation();
   const links = [
     { to: "/", label: "홈" },
     { to: "/curriculum", label: "커리큘럼" },
   ];
 
-  const [user, setUser] = useState(null); // 초기값: 로그아웃 상태
+
   // 컴포넌트가 마운트될 때 로컬 스토리지에서 사용자 정보 가져오기
   useEffect(() => {
     const savedUser = localStorage.getItem("user"); // 로컬 스토리지에서 사용자 정보 확인
