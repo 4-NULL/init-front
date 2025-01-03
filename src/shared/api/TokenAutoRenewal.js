@@ -44,8 +44,7 @@ export const updateTokenAuto = async () => {
         const res = await POST(`/auth/token-renewal`, { accessToken, refreshToken, email });
         
         if (res.success) {
-            // 갱신완료
-            console.log("토큰 갱신이 완료되었습니다.");
+            // 토큰 갱신완료
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             return true;

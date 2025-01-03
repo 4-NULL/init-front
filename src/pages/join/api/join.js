@@ -10,7 +10,8 @@ export  const joinRequest = async ({request}) => {
         alert(res.message);
         return redirect('/');  // 페이지 리로드 없이 클라이언트 측 리다이렉션
     } else {
-        alert("회원가입 중 오류가 발생하였습니다.");
+        // 회원가입 중 오류발생
+        alert(res.message);
         return false;
     }
 }

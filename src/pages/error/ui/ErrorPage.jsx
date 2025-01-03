@@ -1,7 +1,8 @@
-import { useRouteError } from 'react-router-dom';
+import { useRouteError, useNavigate } from 'react-router-dom';
 
 export function ErrorPage() {
   const error = useRouteError();
+  const navigate = useNavigate();
   console.error(error);
 
   return (
@@ -10,6 +11,10 @@ export function ErrorPage() {
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
         <i>{error.statusText || error.message}</i>
+      </p>
+      <p>
+        <button onClick={() => { navigate(-1) }}>이전 화면</button>
+        <button onClick={() => { navigate("/") }}>홈 이동</button>
       </p>
     </div>
   );
