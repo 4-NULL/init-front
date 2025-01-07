@@ -1,4 +1,5 @@
 import { GET } from "@shared/api"
+import { throwError } from "@shared/utils/customError";
 
 export const loader = async ({ params }) => {
     const { seq } = params;
@@ -11,13 +12,15 @@ export const loader = async ({ params }) => {
             res = await GET("/curriculums");
         }
 
-        if (!res) {
-            throw new Error('No data received from server');
+        if (res.success) {
+            return res.data;
+        } else {
+            throwError(res.code, res.message);
         }
-        return res.data;
+
     } catch (error) {
         throw new Response(JSON.stringify({ message: error.message }), {
-            status: 500,
+            status: error.code || 500,
             statusText: 'Failed to load curriculums'
         });
     }

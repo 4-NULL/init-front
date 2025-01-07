@@ -1,4 +1,5 @@
 import { backendBaseUrl } from "@shared/config";
+import { throwError } from "@shared/utils/customError";
 
 const getHeaderToken = () => {
   
@@ -61,16 +62,25 @@ const fetchRequest = async (method, targetURL, bodyData = null) => {
     }
 
     const res = await fetch(url, options);
+
     if (res.ok) {
       const resJson = await res.json();
       return resJson;
+
+    } else if (res.status == 403) {
+      throwError(res.status, '로그인이 필요한 업무입니다.');
     } else {
-      throw new Error(`[${method}] Network res was not ok`);
+      throwError(res.status, '네트워크 연결이 불안정합니다.');
     }
 
   } catch (error) {
-    console.log(`[${method}][API ERROR] -> `, error);
-    return [];
+    // console.log(`[${method} 요청] -> `, error);
+    return {
+      'success': false,
+      'message': error.message,
+      'data': null,
+      'code': error.code,
+    };
   }
 }
 
