@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { fetchUserData } from "../api/callUserData";
+import { useEffect } from "react";
+import { SidebarBottom } from "@shared/ui";
 
 export function Sidebar({user, setUser}) {
   const location = useLocation();
@@ -17,12 +17,6 @@ export function Sidebar({user, setUser}) {
       setUser(JSON.parse(savedUser)); // 로컬 스토리지에서 가져온 사용자 정보로 상태 설정
     }
   }, []);
-
-  // 로그인 후 사용자 정보 로컬 스토리지에 저장
-  const handleLogin = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData)); // 사용자 정보 저장
-    setUser(userData); // 로그인 상태로 설정
-  };
 
   // 로그아웃 시 로컬 스토리지에서 삭제하고 상태 초기화
   const handleLogout = () => {
@@ -58,69 +52,7 @@ export function Sidebar({user, setUser}) {
       </nav>
 
       {/* 하단 사용자 섹션 */}
-      <div className="absolute bottom-0 w-60 p-4 border-t">
-        {user ? (
-          // 로그인 상태
-          <div>
-            <div className="flex items-center mb-4">
-              <img
-                src={user.profileImage}
-                alt={user.name}
-                className="w-8 h-8 rounded-full bg-gray-200"
-              />
-              <div>
-                <p className="ml-2 text-sm text-gray-600">{user.name}</p>
-                <p className="ml-2 text-sm text-gray-600">{user.email}</p>
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={handleLogout}
-                className="flex-1 py-2 px-4 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 text-center"
-              >
-                로그아웃
-              </button>
-              <Link
-                to="/profile"
-                className="flex-1 py-2 px-4 bg-black text-white rounded hover:bg-gray-800 text-center"
-              >
-                내 정보
-              </Link>
-            </div>
-          </div>
-        ) : (
-          // 로그아웃 상태
-          <div>
-            <div className="flex items-center mb-4">
-              <img
-                src="#"
-                alt="User"
-                className="w-8 h-8 rounded-full bg-gray-200"
-              />
-              <div>
-                <p className="ml-2 text-sm text-gray-600">
-                  로그인 후 이용 가능
-                </p>
-                <p className="ml-2 text-sm text-gray-600">123</p>
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <Link
-                to="/login"
-                className="flex-1 py-2 px-4 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 text-center"
-              >
-                로그인
-              </Link>
-              <Link
-                to="/join"
-                className="flex-1 py-2 px-4 bg-black text-white rounded hover:bg-gray-800 text-center"
-              >
-                회원가입
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+      <SidebarBottom user={ user } handleLogout={ handleLogout } />
     </aside>
   );
 }
