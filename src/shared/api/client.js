@@ -68,7 +68,7 @@ const fetchRequest = async (method, targetURL, bodyData = null) => {
       return resJson;
 
     } else if (res.status == 403) {
-      throwError(res.status, '로그인이 필요한 업무입니다.');
+      throwError(res.status, '토큰이 만료되었습니다. 다시 로그인해주세요.');
     } else {
       throwError(res.status, '네트워크 연결이 불안정합니다.');
     }
