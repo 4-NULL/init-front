@@ -34,6 +34,7 @@ const fetchRequest = async (method, targetURL, bodyData = null) => {
     const options = {
       method,
       headers: getHeaderToken(),
+      credentials : 'include' // 쿠키를 포함하도록 설정
     };
 
     // POST, PUT, PATCH 요청 시
