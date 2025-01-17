@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { Button } from "@shared/ui";
 import { deleteAction } from '@pages/curriculum-detail';
 
-export function CurriculumItem({ item }) {
+export function CurriculumItem({ item, filterCurriculums, setFilteredCurriculums }) {
     const { seq, title, description } = item; // 커리큘럼의 seq, title, description을 구조 분해 할당
 
     // 커리큘럼 삭제 핸들러
     const handleCurriculumDelete = (seq) => {
         if (confirm("정말로 삭제하시겠습니까?")) {
-            deleteAction(seq);
+            deleteAction(filterCurriculums, setFilteredCurriculums, seq);
         }
     }
 

@@ -6,8 +6,10 @@ import { useState } from 'react';
 
 
 export function CurriculumDetailPage() {
-    const { seq } = useLoaderData(); // 커리큘럼의 번호 (현재 수업 기반)
+    const lessons = useLoaderData(); // 커리큘럼의 번호 (현재 수업 기반)
     const [searchKeyword, setSearchKeyword] = useState(""); // 수업 검색
+
+    const seq = lessons.seq;
    
     return (
         <div className="bg-gray-50 flex justify-center min-h-screen">
@@ -24,7 +26,7 @@ export function CurriculumDetailPage() {
 
                 {/* 그 커리큘럼에 속한 레슨 리스트 */}
                 <LessonList
-                    curriculumSeq={seq}
+                    item={lessons}
                     keyword={searchKeyword}
                 />
             </div>
