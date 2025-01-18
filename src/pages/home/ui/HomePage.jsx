@@ -13,12 +13,13 @@ export function HomePage() {
 
   useEffect(() => {
     console.log(user);
+    console.log(groups);
   }, []);
 
   return (
     <div className="p-4">
       <div className="flex flex-col gap-2">
-        {user ? <GroupList /> : <>logout</>}
+        {user ? <GroupList showGroupAddBtn /> : <>logout</>}
       </div>
     </div>
   );

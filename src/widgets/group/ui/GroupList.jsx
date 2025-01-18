@@ -8,7 +8,7 @@ const CONST_GROUP_LIST = [
   { name: "group3", seq: 3 },
 ];
 
-export function GroupList({ isShowGroupAddBtn = false }) {
+export function GroupList({ showGroupAddBtn = false }) {
   const [showGroupPopup, setShowGroupPopup] = useState(false);
 
   const toggleGroupAddPopup = () => {
@@ -20,12 +20,14 @@ export function GroupList({ isShowGroupAddBtn = false }) {
       {showGroupPopup && <GroupAddPopup handleClick={toggleGroupAddPopup} />}
       <div className="flex justify-between">
         <h1>내 그룹 리스트</h1>
-        <div
-          className="flex gap-2 p-2 btn btn-primary"
-          onClick={toggleGroupAddPopup}
-        >
-          그룹 생성
-        </div>
+        {showGroupAddBtn && (
+          <div
+            className="flex gap-2 p-2 btn btn-primary"
+            onClick={toggleGroupAddPopup}
+          >
+            그룹 생성
+          </div>
+        )}
       </div>
       <div className="flex gap-2">
         {CONST_GROUP_LIST.map((item) => (
