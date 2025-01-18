@@ -18,7 +18,8 @@ export function HomePage() {
   return (
     <div className="p-4">
       <div className="flex flex-col gap-2">
-        {user ? <GroupList /> : <>logout</>}
+        {/* {user ? <GroupList /> : <>logout</>} */}
+        <GroupList />
       </div>
     </div>
   );
