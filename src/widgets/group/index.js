@@ -1,3 +1,2 @@
-import { GroupList } from "./ui/GroupList";
-
-export { GroupList };
+export { GroupList } from "./ui/GroupList";
+export { createGroup } from "./api/action";

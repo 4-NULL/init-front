@@ -1,88 +1,96 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 
-import { GroupDetail } from '@entities/group';
+// Layout
+import { Layout } from "./Layout";
+
+// Pages & Features (children 순서와 동일하게)
+import { HomePage, loader as groupLoader } from "@pages/home";
+import { createGroup } from "@widgets/group";
+import { LoginPage } from "@pages/login";
+import { JoinPage, joinRequest } from "@pages/join";
+import { GroupDetail } from "@entities/group";
+import {
+  CurriculumListPage,
+  loader as curriculumListLoader,
+} from "@pages/curriculum-list";
 import {
   CurriculumDetailPage,
   loader as curriculumDetailLoader,
   CurriculumActionPage,
   createAction as curriculumCreateAction,
-  editAction as curriculumEditAction
-} from '@pages/curriculum-detail';
-import { CurriculumListPage, loader as curriculumListLoader } from '@pages/curriculum-list';
-import { ErrorPage } from '@pages/error';
-import { HomePage, loader as groupLoader } from '@pages/home';
-import { JoinPage, joinRequest } from '@pages/join';
+  editAction as curriculumEditAction,
+} from "@pages/curriculum-detail";
 import {
   LessonDetailPage,
   loader as lessonDetailLoader,
   LessonActionPage,
   createAction as lessonCreateAction,
-  editAction as lessonEditAction
-} from '@pages/lesson-detail';
-import { LoginPage, loginRequest } from '@pages/login';
-import { Layout } from './Layout';
+  editAction as lessonEditAction,
+} from "@pages/lesson-detail";
+import { ErrorPage } from "@pages/error";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Layout />, // Layout을 최상위로 설정
+    path: "/",
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <HomePage />,
-        loader: groupLoader
-      }, 
-      {
-        path: '/login',
-        element: <LoginPage />
+        loader: groupLoader,
+        action: createGroup,
       },
       {
-        path: '/join',
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/join",
         element: <JoinPage />,
-        action: joinRequest
+        action: joinRequest,
       },
       {
-        path: '/group/:seq',
+        path: "/group/:seq",
         element: <GroupDetail />,
       },
       {
-      path: '/curriculum',
+        path: "/curriculum",
         element: <CurriculumListPage />,
-        loader: curriculumListLoader
+        loader: curriculumListLoader,
       },
       {
-        path: '/curriculum/:seq',
+        path: "/curriculum/:seq",
         element: <CurriculumDetailPage />,
-        loader: curriculumDetailLoader
+        loader: curriculumDetailLoader,
       },
       {
-        path: '/curriculum/create',
+        path: "/curriculum/create",
         element: <CurriculumActionPage />,
-        action: curriculumCreateAction
+        action: curriculumCreateAction,
       },
       {
-        path: '/curriculum/:seq/edit',
+        path: "/curriculum/:seq/edit",
         element: <CurriculumActionPage />,
         loader: curriculumListLoader,
-        action: curriculumEditAction
+        action: curriculumEditAction,
       },
       {
-        path: '/lesson/:seq',
+        path: "/lesson/:seq",
         element: <LessonDetailPage />,
-        loader: lessonDetailLoader
+        loader: lessonDetailLoader,
       },
       {
-        path: '/lesson/:curriculumSeq/create',
+        path: "/lesson/:curriculumSeq/create",
         element: <LessonActionPage />,
-        action: lessonCreateAction
+        action: lessonCreateAction,
       },
       {
-        path: '/lesson/:seq/edit',
+        path: "/lesson/:seq/edit",
         element: <LessonActionPage />,
         loader: lessonDetailLoader,
-        action: lessonEditAction
-      }
+        action: lessonEditAction,
+      },
     ],
   },
 ]);
