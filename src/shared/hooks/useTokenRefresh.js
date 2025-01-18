@@ -63,8 +63,8 @@ export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
 
         try {
             setLoading(true);
-            const { accessToken, refreshToken, email } = userInfo;
-            const res = await POST('/auth/token-renewal', { accessToken, refreshToken, email });
+            const { accessToken } = userInfo;
+            const res = await POST('/auth/token-renewal', { accessToken });
 
             if (res.success) {
                 // 토큰 갱신완료
@@ -75,7 +75,7 @@ export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
                 alert(res.message)
                 goPage("/login");
             } else {
-                // 그 외 (이미 유효한 토큰입니다)
+                // 그 외 에러
                 console.log(res.message);
             }
 
