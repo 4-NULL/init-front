@@ -1,7 +1,7 @@
-import { GET } from "@shared/api"
+import { GET } from "@shared/api";
 
 export const loader = async ({ params }) => {
-    const res = await GET(`/curriculums/${params.seq}`)
+  const res = await GET(`/curriculums/${params.seq}`);
 
-    return res.data
-}
+  return res.data;
+};

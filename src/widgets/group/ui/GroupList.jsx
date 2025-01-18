@@ -24,9 +24,11 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
         )}
       </div>
       <div className="flex gap-2 flex-wrap">
-        {groups.map((item) => (
-          <GroupItem key={item.seq} data={item} />
-        ))}
+        {groups ? (
+          groups.map((item) => <GroupItem key={item.seq} data={item} />)
+        ) : (
+          <span>아직 가입한 그룹이 없습니다.</span>
+        )}
       </div>
     </div>
   );

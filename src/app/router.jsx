@@ -4,9 +4,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./Layout";
 
 // Pages & Features (children 순서와 동일하게)
-import { HomePage, loader as groupLoader } from "@pages/home";
-import { createGroup } from "@widgets/group";
-import { LoginPage } from "@pages/login";
+import { HomePage } from "@pages/home";
+import { createGroup, loader as groupLoader } from "@widgets/group";
+import { LoginPage, loginRequest } from "@pages/login";
 import { JoinPage, joinRequest } from "@pages/join";
 import { GroupDetail } from "@entities/group";
 import {
@@ -44,6 +44,7 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+        action: loginRequest,
       },
       {
         path: "/join",

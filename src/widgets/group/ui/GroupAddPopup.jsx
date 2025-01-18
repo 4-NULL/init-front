@@ -1,6 +1,9 @@
 import { Form } from "react-router-dom";
 import { Input } from "@shared/ui";
+
+import { useUser } from "@shared/context";
 export const GroupAddPopup = ({ handleClose }) => {
+  const { user } = useUser();
   return (
     <div className="bg-black bg-opacity-30 flex justify-center items-center w-full h-screen fixed left-0 top-0">
       <div className="flex flex-col gap-2 bg-white  shadow-lg text-center">
@@ -11,6 +14,7 @@ export const GroupAddPopup = ({ handleClose }) => {
           </span>
         </div>
         <Form className="flex flex-col gap-2 p-5 " method="post">
+          <Input type="hidden" name="userSeq" value={String(user.seq)} />
           <Input
             type="text"
             name="name"

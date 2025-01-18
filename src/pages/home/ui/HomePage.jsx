@@ -2,16 +2,13 @@ import { useEffect } from "react";
 
 import { GroupList } from "@widgets/group";
 
-import { useLoaderData, useOutletContext } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+
+import { useUser } from "@shared/context";
 
 export function HomePage() {
   const groups = useLoaderData();
-
-  const { user } = useOutletContext();
-
-  useEffect(() => {
-    console.log(user);
-  }, []);
+  const { user } = useUser();
 
   return (
     <div className="p-4">
