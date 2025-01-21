@@ -42,16 +42,6 @@ export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
     }
 
     /**
-     * 리프레시 토큰 저장
-     * @param {*} token
-     */
-    const setRefreshToken = (token) => {
-        const userInfo = getUserInfo() || {};
-        userInfo.refreshToken = token;
-        localStorage.setItem("user", JSON.stringify(userInfo));
-    }
-
-    /**
      * 토큰 갱신
      */
     const refreshToken = useCallback(async () => {
@@ -69,7 +59,6 @@ export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
             if (res.success) {
                 // 토큰 갱신완료
                 setAccessToken(res.data.accessToken);
-                setRefreshToken(res.data.refreshToken);
             } else if (res.code == 403) {
                 // 토큰 만료
                 alert(res.message)
@@ -101,7 +90,6 @@ export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
     return {
         loading,
         setAccessToken,
-        setRefreshToken,
         startTokenRefresh,
     };
 }
