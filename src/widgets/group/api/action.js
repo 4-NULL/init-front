@@ -7,7 +7,7 @@ import { redirect } from "react-router-dom";
  * @returns
  */
 export const createGroup = async ({ request }) => {
-  debugger;
+  // debugger;
   const res = await POST(`/groups`, request);
 
   if (res.success) {
