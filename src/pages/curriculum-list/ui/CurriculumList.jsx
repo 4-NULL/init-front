@@ -20,39 +20,35 @@ export function CurriculumList() {
     }, [searchKeyword, curriculums]);
 
     return (
-        <div className="mt-6">
-            <div className='mt-6'>
-                <div className="flex space-x-4 mb-6 text-sm font-medium">
-                    <Search handleInputOnChange={(e) => { setSearchKeyword(e.target.value); }} />
-                    <Link
-                        to="/curriculum/create"
-                        className="flex justify-center p-3 px-6 font-semibold text-black border border-blue-300 rounded-lg hover:bg-blue-500 hover:text-white"
-                    >커리큘럼 등록
-                    </Link>
-                </div>
-
-                {/* <h1 className="underline border-2 text-center">커리큘럼 리스트</h1> */}
-                {
-                    filterCurriculums.length > 0 ?
-                    (
-                        <div>
-                            {
-                                filterCurriculums.map((curriculum) => (
-                                    <CurriculumItem
-                                        key={curriculum.seq}
-                                        item={curriculum}
-                                        filterCurriculums={filterCurriculums}
-                                        setFilteredCurriculums={setFilteredCurriculums}
-                                    />
-                                ))
-                            }
-                        </div>
-
-                    ) : (
-                        <div>커리큘럼을 등록해주세요.</div>
-                    )
-                }
+        <div className="p-5">
+            <div className="flex items-center mb-5">
+                <Search handleInputOnChange={(e) => { setSearchKeyword(e.target.value); }} />
+                <Link
+                    to="/curriculum/create"
+                    className="flex justify-center text-sm p-3 font-semibold text-black border border-green-500 rounded-lg hover:bg-green-500 hover:text-white"
+                >커리큘럼 등록
+                </Link>
             </div>
+            {
+                filterCurriculums.length > 0 ?
+                (
+                    <div>
+                            {
+                            filterCurriculums.map((curriculum) => (
+                                <CurriculumItem
+                                    key={curriculum.seq}
+                                    item={curriculum}
+                                    filterCurriculums={filterCurriculums}
+                                    setFilteredCurriculums={setFilteredCurriculums}
+                                />
+                            ))
+                        }
+                    </div>
+
+                ) : (
+                    <div>커리큘럼을 등록해주세요.</div>
+                )
+            }
         </div>
     );
 }

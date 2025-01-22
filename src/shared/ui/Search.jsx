@@ -7,7 +7,7 @@ export function Search({
     return (
         <div className="max-w-lg mx-auto">
             <div className="flex">
-                <div className="relative w-full">
+                <div className="relative w-96">
                     <input
                         type="search"
                         id="search-dropdown"

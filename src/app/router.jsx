@@ -9,24 +9,9 @@ import { createGroup, loader as groupLoader } from "@widgets/group";
 import { LoginPage, loginRequest } from "@pages/login";
 import { JoinPage, joinRequest } from "@pages/join";
 import { GroupDetail } from "@entities/group";
-import {
-  CurriculumListPage,
-  loader as curriculumListLoader,
-} from "@pages/curriculum-list";
-import {
-  CurriculumDetailPage,
-  loader as curriculumDetailLoader,
-  CurriculumActionPage,
-  createAction as curriculumCreateAction,
-  editAction as curriculumEditAction,
-} from "@pages/curriculum-detail";
-import {
-  LessonDetailPage,
-  loader as lessonDetailLoader,
-  LessonActionPage,
-  createAction as lessonCreateAction,
-  editAction as lessonEditAction,
-} from "@pages/lesson-detail";
+import { CurriculumListPage, loader as curriculumListLoader, } from "@pages/curriculum-list";
+import { CurriculumDetailPage, loader as curriculumDetailLoader, CurriculumActionPage, createAction as curriculumCreateAction, editAction as curriculumEditAction, } from "@pages/curriculum-detail";
+import { LessonDetailPage, loader as lessonDetailLoader, LessonActionPage, createAction as lessonCreateAction, editAction as lessonEditAction, } from "@pages/lesson-detail";
 import { ErrorPage } from "@pages/error";
 
 const router = createBrowserRouter([
