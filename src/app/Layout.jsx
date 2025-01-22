@@ -7,7 +7,7 @@ import { useTokenRefresh } from "@shared/hooks/useTokenRefresh";
 function LayoutContent() {
   const intervalTime = 10 * 60 * 1000;
   const { user, setUser } = useUser();
-  const { startTokenRefresh } = useTokenRefresh(setUser, intervalTime);
+  const { startTokenRefresh } = useTokenRefresh(intervalTime);
 
   useEffect(() => {
     if (user) {
@@ -18,7 +18,7 @@ function LayoutContent() {
 
   return (
     <div className="flex w-full">
-      <Sidebar user={user} setUser={setUser} />
+      <Sidebar />
       <main className="flex-1">
         <Outlet context={{ user, setUser }} />
       </main>

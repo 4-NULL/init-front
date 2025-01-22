@@ -15,18 +15,10 @@ export function UserProvider({ children }) {
     return navigate("/");
   };
 
-  const logout = async () => {
-
-    try {
-      await GET('/auth/logout'); // 서버에 모든 쿠키 삭제
-
-      setUser(null);
-      localStorage.removeItem("user");
-      return redirect("/login"); // 페이지 리로드 없이 클라이언트 측 리다이렉션
-
-    } catch (error) {
-      alert("로그아웃 처리중 오류가 발생하였습니다: " + error);
-    }
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+    return redirect("/login"); // 페이지 리로드 없이 클라이언트 측 리다이렉션
   };
 
   return (

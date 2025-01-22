@@ -9,7 +9,7 @@ export function ErrorPage() {
   return (
     <>
       {
-        error.status && error.status == 403
+        error.status && [401, 403].includes(error.status)
         ? (
           <LoginModal prevPage='' />
         )

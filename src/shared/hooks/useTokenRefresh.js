@@ -1,16 +1,17 @@
 import { POST } from "@shared/api";
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "@shared/context";
 
-export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
+export const useTokenRefresh = (intervalTime = 10 * 60 * 1000) => {
+    const { logout } = useUser();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const goPage = (page = "/login") => {
         if (page == "/login") {
             // 로그인 이동할 경우 로컬 스토리에 사용자 정보 삭제
-            localStorage.removeItem("user"); // 로컬 스토리지에서 사용자 정보 삭제
-            setUser(null);
+            logout();
         }
 
         navigate(page);
@@ -59,7 +60,7 @@ export const useTokenRefresh = (setUser, intervalTime = 10 * 60 * 1000) => {
             if (res.success) {
                 // 토큰 갱신완료
                 setAccessToken(res.data.accessToken);
-            } else if (res.code == 403) {
+            } else if ([401, 403].includes(res.code)) {
                 // 토큰 만료
                 alert(res.message)
                 goPage("/login");

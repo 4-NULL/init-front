@@ -68,10 +68,15 @@ const fetchRequest = async (method, targetURL, bodyData = null) => {
     if (res.ok) {
       // console.log(resJson.message);
       return resJson;
-
-    } else if (res.status == 403) {
-      throwError(res.status, '토큰이 만료되었습니다. 다시 로그인해주세요.');
     } else {
+      /*
+        401 Unauthorized
+          - 인증 실패 (인증 정보 유효하지 않음) -> 로그인 유도
+        403 Forbidden
+          - 권한 없음 (사용자 인증은 받았지만, 권한이 부족) -> 알럿 메시지 노출
+        500 Internal Server Error
+          - 서버에서 예기치 않은 오류 발생
+      */
       throwError(res.status, resJson.message);
     }
 
