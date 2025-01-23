@@ -1,2 +1,1 @@
-export { CurriculumItem } from '../../entities/curriculum/ui/CurriculumItem';
-
+export { CurriculumProgressBar } from "./ui/CurriculumProgressBar";
