@@ -4,7 +4,7 @@ import { useState } from "react";
 import { GroupItem } from "@entities/group";
 import { GroupAddPopup } from "./GroupAddPopup";
 import { GroupContents } from "./GroupContents";
-import { CurriculumProgressBar } from '@widgets/curriculum';
+import { ProgressBar } from "@shared/ui";
 
 export function GroupList({ showGroupAddBtn = false, groups = [] }) {
   const [showGroupPopup, setShowGroupPopup] = useState(false);
@@ -33,8 +33,8 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
         <section className="flex justify-start w-max items-center p-2 border border-black rounded-lg">
           <h1 className="font-bold">Curriculums that : learning</h1>
         </section>
-        <CurriculumProgressBar title="1. React course" description="Group 2" progress={75} />
-        <CurriculumProgressBar title="Communication" description="Group 1" progress={50} />
+        <ProgressBar title="1. React course" description="Group 2" progress={75} />
+        <ProgressBar title="Communication" description="Group 1" progress={50} />
       </article>
 
       <div className="flex gap-2 flex-wrap">

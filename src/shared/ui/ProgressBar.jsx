@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 
-export function CurriculumProgressBar({ title, description, progress }) {
+export function ProgressBar({ title, description, progress }) {
     return (
         <section className="flex flex-col w-full mt-5 p-4 font-bold border border-black rounded-lg">
             <div className="space-y-2">
@@ -18,7 +18,7 @@ export function CurriculumProgressBar({ title, description, progress }) {
     )
 }
 
-CurriculumProgressBar.propTypes = {
+ProgressBar.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     progress: PropTypes.number.isRequired, // 진행도 (0~100%)

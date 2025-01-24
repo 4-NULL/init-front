@@ -1,1 +1,0 @@
-export { CurriculumProgressBar } from "./ui/CurriculumProgressBar";
