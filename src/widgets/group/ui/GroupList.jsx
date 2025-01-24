@@ -13,14 +13,16 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
     setShowGroupPopup(!showGroupPopup);
   };
 
-  const contents = [
-    {seq: 1, title: 'Group 1'},
-    {seq: 2, title: 'Group 2'},
-    {seq: 3, title: 'Group 3'},
-  ];
+  // 예시
+  const contents = [];
+  for (let i = 1; i <= 10; i++) {
+    contents.push(
+      { seq: i, title: `Group ${i}`, description: `Group ${i} 설명입니다.` }
+    )
+  }
 
   return (
-    <div>
+    <>
       { showGroupPopup && <GroupAddPopup handleClose={toggleGroupAddPopup} /> }
       <div className="flex justify-between">
         <h1 className="w-max font-bold p-2 border border-black rounded-lg">My Group List</h1>
@@ -28,7 +30,7 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
       </div>
 
       <GroupContents contents={contents} />
-      
+
       <article className="mt-5">
         <section className="flex justify-start w-max items-center p-2 border border-black rounded-lg">
           <h1 className="font-bold">Curriculums that : learning</h1>
@@ -44,7 +46,7 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
           <span>아직 가입한 그룹이 없습니다.</span>
         )}
       </div>
-    </div>
+    </>
   );
 }
 

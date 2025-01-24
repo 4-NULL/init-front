@@ -13,13 +13,13 @@ export function Textarea({
     onChange
 }) {
     return (
-        <div className="mb-6">
-            <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label>
+        <div className="flex justify-between items-center mb-4">
+            { label && <label htmlFor={id} className="w-28 block text-sm font-medium text-gray-700">{label}</label> }
             <textarea
                 id={id}
                 name={name}
                 rows={rows}
-                className="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                className="w-full placeholder:text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
                 minLength={minLen}
                 maxLength={maxLen}
                 placeholder={placeholder}
