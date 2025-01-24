@@ -18,7 +18,7 @@ export function CurriculumProgressBar({ title, description, progress }) {
     )
 }
 
-CurriculumProgressBar.prototype = {
+CurriculumProgressBar.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     progress: PropTypes.number.isRequired, // 진행도 (0~100%)

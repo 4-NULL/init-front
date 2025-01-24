@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
+
 import { Form } from "react-router-dom";
 import { Input } from "@shared/ui";
-
 import { useUser } from "@shared/context";
-import { useEffect } from "react";
+
 export const GroupAddPopup = ({ handleClose }) => {
   const { user } = useUser();
 
@@ -15,16 +16,9 @@ export const GroupAddPopup = ({ handleClose }) => {
             X
           </span>
         </div>
-        <Form className="flex flex-col p-5 " method="post">
+        <Form className="flex flex-col p-5 w-80 " method="post">
           <input type="hidden" name="userSeq" value={String(user.seq)} />
-          <div className="flex items-center text-center gap-5">
-            <Input
-              type="text"
-              name="name"
-              placeholder="Group Name"
-              className="border-2 border-slate-200"
-            />
-          </div>
+          <Input label="Name" type="text" name="name" placeholder="Group Name" />
           <div className="flex gap-2">
             <button type="submit" className="flex-1 btn btn-primary">confirm</button>
             <button className="flex-1 btn btn-secondary" onClick={handleClose}>cancel</button>
@@ -33,4 +27,8 @@ export const GroupAddPopup = ({ handleClose }) => {
       </div>
     </div>
   );
+};
+
+GroupAddPopup.propTypes = {
+  handleClose: PropTypes.func
 };

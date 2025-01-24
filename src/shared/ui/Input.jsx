@@ -12,14 +12,18 @@ export function Input({
     value,
     onChange
 }) {
+    const inputClass = label ?
+        'w-max placeholder:text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500' :
+        'w-full placeholder:text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500';
+
     return (
-        <div className="mb-6">
-            <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label>
+        <div className="flex justify-between items-center mb-4">
+            { label && <label htmlFor={id} className="block text-sm font-medium text-gray-700">{label}</label> }
             <input
                 type={type}
                 id={id}
                 name={name}
-                className="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className={inputClass}
                 minLength={minLen}
                 maxLength={maxLen}
                 placeholder={placeholder}

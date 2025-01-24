@@ -13,7 +13,6 @@ export const createGroup = async ({ request }) => {
     return true;
   } else {
     alert(res.message);
-    console.error(res);
     return false;
   }
 };
