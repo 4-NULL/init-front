@@ -4,15 +4,16 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./Layout";
 
 // Pages & Features (children 순서와 동일하게)
-import { HomePage } from "@pages/home";
-import { createGroup, loader as groupLoader } from "@widgets/group";
-import { LoginPage, loginRequest } from "@pages/login";
-import { JoinPage, joinRequest } from "@pages/join";
 import { GroupDetail } from "@entities/group";
+import { CurriculumActionPage, CurriculumDetailPage, createAction as curriculumCreateAction, loader as curriculumDetailLoader, editAction as curriculumEditAction, } from "@pages/curriculum-detail";
 import { CurriculumListPage, loader as curriculumListLoader, } from "@pages/curriculum-list";
-import { CurriculumDetailPage, loader as curriculumDetailLoader, CurriculumActionPage, createAction as curriculumCreateAction, editAction as curriculumEditAction, } from "@pages/curriculum-detail";
-import { LessonDetailPage, loader as lessonDetailLoader, LessonActionPage, createAction as lessonCreateAction, editAction as lessonEditAction, } from "@pages/lesson-detail";
 import { ErrorPage } from "@pages/error";
+import { GroupListPage } from "@pages/group-list";
+import { HomePage } from "@pages/home";
+import { JoinPage, joinRequest } from "@pages/join";
+import { LessonActionPage, LessonDetailPage, createAction as lessonCreateAction, loader as lessonDetailLoader, editAction as lessonEditAction, } from "@pages/lesson-detail";
+import { LoginPage, loginRequest } from "@pages/login";
+import { createGroup, loader as groupLoader } from "@widgets/group";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         path: "/join",
         element: <JoinPage />,
         action: joinRequest,
+      },
+      {
+        path: "/group",
+        element: <GroupListPage />,
       },
       {
         path: "/group/:seq",

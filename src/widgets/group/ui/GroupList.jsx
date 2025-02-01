@@ -12,7 +12,6 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
     setShowGroupPopup(!showGroupPopup);
   };
 
-
   return (
     <>
       { showGroupPopup && <GroupAddPopup handleClose={toggleGroupAddPopup} /> }
@@ -21,10 +20,7 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
         { showGroupAddBtn && (<div className="w-24 font-bold text-center p-2 border border-black rounded-lg" onClick={toggleGroupAddPopup}>Add</div>) }
       </div>
 
-      {groups 
-        ? <GroupContents contents={groups} /> 
-        : <span>아직 가입한 그룹이 없습니다.</span>
-      }
+      <GroupContents contents={groups} />
 
       <article className="mt-5">
         <section className="flex justify-start w-max items-center p-2 border border-black rounded-lg">
@@ -37,7 +33,6 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
     </>
   );
 }
-
 
 GroupList.propTypes = {
   showGroupAddBtn: PropTypes.bool,

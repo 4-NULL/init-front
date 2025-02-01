@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { GroupList } from "@widgets/group";
 
 import { useLoaderData } from "react-router-dom";

@@ -17,6 +17,7 @@ export function GroupContents({ contents = [] }) {
                         )
                     })
                 ) : (
+                    // TODO: 그룹 추천 컴포넌트 OR 그룹 페이지로 이동 버튼 추가
                     <section className="flex px-8 py-12 rounded-2xl border-black border-2 cursor-pointer hover:bg-slate-50">
                         <div className="font-bold text-lg">내용이 없습니다.</div>
                     </section>

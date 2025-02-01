@@ -1,10 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
 import { SidebarBottom } from "@shared/ui";
+import { Link, useLocation } from "react-router-dom";
 export function Sidebar() {
   const location = useLocation();
   const links = [
     { to: "/", label: "홈" },
     { to: "/curriculum", label: "커리큘럼" },
+    { to: "/group", label: "그룹" },
   ];
 
   return (
