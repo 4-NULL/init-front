@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 
+import { ProgressBar } from "@shared/ui";
 import { useState } from "react";
-import { GroupItem } from "@entities/group";
 import { GroupAddPopup } from "./GroupAddPopup";
 import { GroupContents } from "./GroupContents";
-import { ProgressBar } from "@shared/ui";
 
 export function GroupList({ showGroupAddBtn = false, groups = [] }) {
   const [showGroupPopup, setShowGroupPopup] = useState(false);
@@ -13,13 +12,6 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
     setShowGroupPopup(!showGroupPopup);
   };
 
-  // 예시
-  const contents = [];
-  for (let i = 1; i <= 10; i++) {
-    contents.push(
-      { seq: i, title: `Group ${i}`, description: `Group ${i} 설명입니다.` }
-    )
-  }
 
   return (
     <>
@@ -29,7 +21,10 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
         { showGroupAddBtn && (<div className="w-24 font-bold text-center p-2 border border-black rounded-lg" onClick={toggleGroupAddPopup}>Add</div>) }
       </div>
 
-      <GroupContents contents={contents} />
+      {groups 
+        ? <GroupContents contents={groups} /> 
+        : <span>아직 가입한 그룹이 없습니다.</span>
+      }
 
       <article className="mt-5">
         <section className="flex justify-start w-max items-center p-2 border border-black rounded-lg">
@@ -39,13 +34,6 @@ export function GroupList({ showGroupAddBtn = false, groups = [] }) {
         <ProgressBar title="Communication" description="Group 1" progress={50} />
       </article>
 
-      <div className="flex gap-2 flex-wrap">
-        {groups ? (
-          groups.map((item) => <GroupItem key={item.seq} data={item} />)
-        ) : (
-          <span>아직 가입한 그룹이 없습니다.</span>
-        )}
-      </div>
     </>
   );
 }
